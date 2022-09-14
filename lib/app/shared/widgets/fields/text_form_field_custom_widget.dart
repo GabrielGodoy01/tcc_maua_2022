@@ -47,9 +47,9 @@ class TextFormFieldCustomWidget extends StatelessWidget {
                         mask: '(00) 00000-0000',
                         text: value,
                         cursorBehavior: CursorBehaviour.end)
-                    : tipoCampoTextoEnum == TipoCampoTextoEnum.cpf
+                    : tipoCampoTextoEnum == TipoCampoTextoEnum.cep
                         ? MaskedTextController(
-                            mask: '000.000.000-00',
+                            mask: '00000-00',
                             text: value,
                             cursorBehavior: CursorBehaviour.end,
                           )

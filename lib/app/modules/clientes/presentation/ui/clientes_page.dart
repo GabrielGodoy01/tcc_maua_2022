@@ -167,6 +167,8 @@ class _ClientesPageState extends State<ClientesPage> {
                             titulo: 'CEP *',
                             onChanged: controller.setCep,
                             value: controller.cliente.enderecoModel.cep,
+                            tipoCampoTextoEnum: TipoCampoTextoEnum.cep,
+                            isNumber: true,
                             isRequired: true,
                           ),
                           FormButtonWidget(
