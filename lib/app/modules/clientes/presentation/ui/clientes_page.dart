@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:tcc_maua_2022/app/modules/clientes/infra/model/clientes_model.dart';
 import 'package:tcc_maua_2022/app/modules/clientes/presentation/controllers/clientes_controller.dart';
 import 'package:tcc_maua_2022/app/shared/domain/infra/tipo_campo_enum.dart';
+import '../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
 import '../../../../shared/widgets/fields/text_form_field_custom_widget.dart';
 import '../../../../shared/widgets/form_button_widget.dart';
 
@@ -15,13 +17,22 @@ class ClientesPage extends StatefulWidget {
 
 class _ClientesPageState extends State<ClientesPage> {
   final controller = Modular.get<ClientesController>();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      showInitDialog(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          // showInitDialog(context);
+          showInitDialog(context);
         },
         label: const Icon(
           Icons.add,
@@ -235,6 +246,88 @@ class _ClientesPageState extends State<ClientesPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void showInitDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text(
+              'Escolha se deseja alterar ou adicionar novo cliente:'),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              FormButtonWidget(
+                icon: Icons.add,
+                titulo: 'Novo Cliente',
+                onPressed: () {
+                  Modular.to.pop();
+                },
+              ),
+              FormButtonWidget(
+                icon: Icons.replay_outlined,
+                titulo: 'Alterar Cliente',
+                onPressed: () {
+                  Modular.to.pop();
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text(
+                              'Escolha o cliente que deseja alterar:'),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              DropDownFieldCustomWidget<ClientesModel>(
+                                onChanged: (value) {
+                                  controller.cliente = value!;
+                                },
+                                items: controller.listaClientes
+                                    .map((ClientesModel value) {
+                                  return DropdownMenuItem<ClientesModel>(
+                                    value: value,
+                                    child: Text(value.nome),
+                                  );
+                                }).toList(),
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  FormButtonWidget(
+                                    backgroundColor: Colors.red,
+                                    icon: Icons.close,
+                                    titulo: 'Cancelar',
+                                    onPressed: () {
+                                      Modular.to.pop();
+                                      controller.cliente =
+                                          ClientesModel.newInstance();
+                                    },
+                                  ),
+                                  FormButtonWidget(
+                                    icon: Icons.verified,
+                                    titulo: 'Confirmar',
+                                    onPressed: () {
+                                      Modular.to.pop();
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
