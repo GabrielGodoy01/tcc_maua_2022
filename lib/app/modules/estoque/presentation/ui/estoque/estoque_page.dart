@@ -92,7 +92,6 @@ class _EstoquePageState extends State<EstoquePage> {
                             titulo: 'Descrição *',
                             onChanged: controller.setDescricao,
                             isRequired: true,
-                            isNumber: true,
                             value: controller.item.descricao,
                           ),
                           TextFormFieldCustomWidget(
