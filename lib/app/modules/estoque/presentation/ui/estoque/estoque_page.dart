@@ -29,7 +29,7 @@ class _EstoquePageState extends State<EstoquePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           showInitDialog(context);
@@ -37,7 +37,7 @@ class _EstoquePageState extends State<EstoquePage> {
         label: const Icon(
           Icons.add,
           color: Colors.white,
-          size: 24.0,
+          size: 36.0,
         ),
       ),
       body: SafeArea(
@@ -97,7 +97,7 @@ class _EstoquePageState extends State<EstoquePage> {
                           ),
                           TextFormFieldCustomWidget(
                             size: 1,
-                            titulo: 'Localizacao',
+                            titulo: 'Localização',
                             onChanged: controller.setLocalizacao,
                             value: controller.item.localizacao,
                           ),
