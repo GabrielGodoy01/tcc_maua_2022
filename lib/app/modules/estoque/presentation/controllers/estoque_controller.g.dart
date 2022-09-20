@@ -25,19 +25,19 @@ mixin _$EstoqueController on EstoqueControllerBase, Store {
     });
   }
 
-  late final _$itemAtom =
-      Atom(name: 'EstoqueControllerBase.item', context: context);
+  late final _$estoqueAtom =
+      Atom(name: 'EstoqueControllerBase.estoque', context: context);
 
   @override
-  EstoqueModel get item {
-    _$itemAtom.reportRead();
-    return super.item;
+  EstoqueModel get estoque {
+    _$estoqueAtom.reportRead();
+    return super.estoque;
   }
 
   @override
-  set item(EstoqueModel value) {
-    _$itemAtom.reportWrite(value, super.item, () {
-      super.item = value;
+  set estoque(EstoqueModel value) {
+    _$estoqueAtom.reportWrite(value, super.estoque, () {
+      super.estoque = value;
     });
   }
 
@@ -69,17 +69,6 @@ mixin _$EstoqueController on EstoqueControllerBase, Store {
         name: 'EstoqueControllerBase.setLocalizacao');
     try {
       return super.setLocalizacao(value);
-    } finally {
-      _$EstoqueControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setUnidade(UnidadeItemEnum? value) {
-    final _$actionInfo = _$EstoqueControllerBaseActionController.startAction(
-        name: 'EstoqueControllerBase.setUnidade');
-    try {
-      return super.setUnidade(value);
     } finally {
       _$EstoqueControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -166,7 +155,7 @@ mixin _$EstoqueController on EstoqueControllerBase, Store {
   String toString() {
     return '''
 listaItensEstoque: ${listaItensEstoque},
-item: ${item}
+estoque: ${estoque}
     ''';
   }
 }

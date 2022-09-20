@@ -40,9 +40,18 @@ abstract class ClientesControllerBase with Store {
     ),
   ];
 
+  @observable
+  String cepError = '';
+
   @action
   Future<void> procuraCep(String cep) async {
-    enderecoCliente = await buscaCepDatasource.getCepExterno(cep);
+    cepError = '';
+    enderecoCliente = await buscaCepDatasource
+        .getCepExterno(cep)
+        .onError((error, stackTrace) {
+      cepError = 'Erro ao buscar CEP, confirme-o.';
+      return ResultadoBuscaCepModel.newInstance();
+    });
     endereco = cliente.enderecoModel;
     endereco = endereco.copyWith(
         bairro: enderecoCliente.bairro,
@@ -121,7 +130,9 @@ abstract class ClientesControllerBase with Store {
   @action
   Future<void> salvarCliente() async {
     if (cliente.idCliente != null) {
-      await repository.salvarItem(cliente);
+      await repository.alterarItem(cliente);
+    } else {
+      await repository.criarNovoItem(cliente);
     }
   }
 }

@@ -15,4 +15,10 @@ class ClientesDatasourceImpl extends ClientesDatasourceInterface {
     // dio post implementation
     estoque.add(item);
   }
+
+  @override
+  Future putItem(ClientesModel item) async {
+    // dio put implementation
+    estoque.add(item);
+  }
 }

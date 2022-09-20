@@ -1,6 +1,4 @@
 import 'package:mobx/mobx.dart';
-
-import '../../domain/infra/unidade_estoque_enum.dart';
 import '../../domain/repositories/estoque_repository_interface.dart';
 import '../../infra/model/estoque_model.dart';
 
@@ -23,7 +21,6 @@ abstract class EstoqueControllerBase with Store {
       custo: 100,
       idEstoque: 0,
       localizacao: 'localizacao',
-      unidadeItem: UnidadeItemEnum.linear,
     ),
     EstoqueModel(
       quantidade: 10,
@@ -33,65 +30,65 @@ abstract class EstoqueControllerBase with Store {
       custo: 100,
       idEstoque: 0,
       localizacao: 'localizacao',
-      unidadeItem: UnidadeItemEnum.linear,
     ),
   ];
 
   @observable
-  EstoqueModel item = EstoqueModel.newInstance();
+  EstoqueModel estoque = EstoqueModel.newInstance();
 
   @action
   void setDescricao(String value) {
-    item = item.copyWith(descricao: value);
+    estoque = estoque.copyWith(descricao: value);
   }
 
   @action
   void setLocalizacao(String value) {
-    item = item.copyWith(localizacao: value);
-  }
-
-  @action
-  void setUnidade(UnidadeItemEnum? value) {
-    item = item.copyWith(unidadeItem: value);
+    estoque = estoque.copyWith(localizacao: value);
   }
 
   @action
   void setQuantidade(int value) {
-    item = item.copyWith(quantidade: value);
+    estoque = estoque.copyWith(quantidade: value);
   }
 
   @action
   void setEstoqueMinimo(int value) {
-    item = item.copyWith(estoqueMinimo: value);
+    estoque = estoque.copyWith(estoqueMinimo: value);
   }
 
   @action
   void setEstoqueMaximo(int value) {
-    item = item.copyWith(estoqueMaximo: value);
+    estoque = estoque.copyWith(estoqueMaximo: value);
   }
 
   @action
   void setCusto(double value) {
-    item = item.copyWith(custo: value);
+    estoque = estoque.copyWith(custo: value);
   }
 
   @action
   void setEstoque(int id) {
-    item = listaItensEstoque.firstWhere((element) => element.idEstoque == id);
+    estoque =
+        listaItensEstoque.firstWhere((element) => element.idEstoque == id);
   }
 
   @action
   Future<void> salvarItem() async {
-    await repository.salvarItem(item);
+    if (estoque.idEstoque != null) {
+      await repository.alterarItem(estoque);
+    } else {
+      await repository.criarNovoItem(estoque);
+    }
   }
 
   @action
   void limparTexto() {
-    item = EstoqueModel.newInstance();
+    estoque = EstoqueModel.newInstance();
   }
 
   @action
   void selectProduto(int id) {
-    item = listaItensEstoque.firstWhere((element) => element.idEstoque == id);
+    estoque =
+        listaItensEstoque.firstWhere((element) => element.idEstoque == id);
   }
 }

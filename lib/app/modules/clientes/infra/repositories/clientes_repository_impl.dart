@@ -9,7 +9,12 @@ class ClientesRepositoryImpl implements ClientesRepositoryInterface {
   ClientesRepositoryImpl({required this.datasource});
 
   @override
-  Future<void> salvarItem(ClientesModel item) async {
+  Future<void> alterarItem(ClientesModel item) async {
+    await datasource.putItem(item);
+  }
+
+  @override
+  Future<void> criarNovoItem(ClientesModel item) async {
     await datasource.postItem(item);
   }
 }

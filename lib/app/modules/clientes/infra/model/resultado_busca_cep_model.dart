@@ -1,17 +1,16 @@
 class ResultadoBuscaCepModel {
-  final String cep;
-  final String logradouro;
-
-  final String bairro;
-  final String localidade;
-  final String uf;
+  final String? cep;
+  final String? logradouro;
+  final String? bairro;
+  final String? localidade;
+  final String? uf;
 
   ResultadoBuscaCepModel({
-    required this.cep,
-    required this.logradouro,
-    required this.bairro,
-    required this.localidade,
-    required this.uf,
+    this.cep,
+    this.logradouro,
+    this.bairro,
+    this.localidade,
+    this.uf,
   });
 
   factory ResultadoBuscaCepModel.fromMap(Map<String, dynamic> json) =>
@@ -33,11 +32,11 @@ class ResultadoBuscaCepModel {
 
   factory ResultadoBuscaCepModel.newInstance() {
     return ResultadoBuscaCepModel(
-      bairro: '',
-      cep: '',
-      localidade: '',
-      logradouro: '',
-      uf: '',
+      bairro: null,
+      cep: null,
+      localidade: null,
+      logradouro: null,
+      uf: null,
     );
   }
 

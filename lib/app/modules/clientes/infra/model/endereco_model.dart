@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class EnderecoModel {
   final String? cep;
   final String? endereco;
@@ -46,4 +48,33 @@ class EnderecoModel {
       estado: estado ?? this.estado,
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'cep': cep,
+      'endereco': endereco,
+      'numero': numero,
+      'complemento': complemento,
+      'bairro': bairro,
+      'cidade': cidade,
+      'estado': estado,
+    };
+  }
+
+  factory EnderecoModel.fromMap(Map<String, dynamic> map) {
+    return EnderecoModel(
+      cep: map['cep'],
+      endereco: map['endereco'],
+      numero: map['numero'],
+      complemento: map['complemento'],
+      bairro: map['bairro'],
+      cidade: map['cidade'],
+      estado: map['estado'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory EnderecoModel.fromJson(String source) =>
+      EnderecoModel.fromMap(json.decode(source));
 }

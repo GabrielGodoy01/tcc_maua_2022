@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'endereco_model.dart';
 
 class ClientesModel {
@@ -52,7 +54,6 @@ class ClientesModel {
     String? nomeContato,
     String? rgContato,
     EnderecoModel? enderecoModel,
-    int? idCliente,
     String? email,
   }) {
     return ClientesModel(
@@ -63,8 +64,40 @@ class ClientesModel {
       nomeContato: nomeContato ?? this.nomeContato,
       rgContato: rgContato ?? this.rgContato,
       enderecoModel: enderecoModel ?? this.enderecoModel,
-      idCliente: idCliente ?? this.idCliente,
       email: email ?? this.email,
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'nome': nome,
+      'razaoSocial': razaoSocial,
+      'cpf': cpf,
+      'nomeContato': nomeContato,
+      'rgContato': rgContato,
+      'enderecoModel': enderecoModel.toMap(),
+      'idCliente': idCliente,
+      'telefones': telefones,
+      'email': email,
+    };
+  }
+
+  factory ClientesModel.fromMap(Map<String, dynamic> map) {
+    return ClientesModel(
+      nome: map['nome'] ?? '',
+      razaoSocial: map['razaoSocial'] ?? '',
+      cpf: map['cpf'] ?? '',
+      nomeContato: map['nomeContato'] ?? '',
+      rgContato: map['rgContato'] ?? '',
+      enderecoModel: EnderecoModel.fromMap(map['enderecoModel']),
+      idCliente: map['idCliente']?.toInt(),
+      telefones: List<String>.from(map['telefones']),
+      email: map['email'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory ClientesModel.fromJson(String source) =>
+      ClientesModel.fromMap(json.decode(source));
 }

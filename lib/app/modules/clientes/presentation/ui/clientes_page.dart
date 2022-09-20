@@ -161,6 +161,7 @@ class _ClientesPageState extends State<ClientesPage> {
                       Wrap(
                         spacing: 32,
                         runSpacing: 12,
+                        crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           TextFormFieldCustomWidget(
                             size: 1,
@@ -180,8 +181,20 @@ class _ClientesPageState extends State<ClientesPage> {
                               setState(() {});
                             },
                           ),
+                          Observer(builder: (_) {
+                            return Text(
+                              controller.cepError,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: Colors.red,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          }),
                           TextFormFieldCustomWidget(
                             size: 0,
+                            isEnabled: false,
                             titulo: 'Endereço *',
                             value: controller.cliente.enderecoModel.endereco,
                             isRequired: true,
@@ -197,18 +210,21 @@ class _ClientesPageState extends State<ClientesPage> {
                           TextFormFieldCustomWidget(
                             size: 1,
                             titulo: 'Bairro *',
+                            isEnabled: false,
                             value: controller.cliente.enderecoModel.bairro,
                             isRequired: true,
                           ),
                           TextFormFieldCustomWidget(
                             size: 1,
                             titulo: 'Cidade *',
+                            isEnabled: false,
                             value: controller.cliente.enderecoModel.cidade,
                             isRequired: true,
                           ),
                           TextFormFieldCustomWidget(
                             size: 2,
                             titulo: 'Estado *',
+                            isEnabled: false,
                             value: controller.cliente.enderecoModel.estado,
                             isRequired: true,
                           ),

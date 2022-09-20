@@ -14,16 +14,12 @@ class BuscaCepDatasource {
       var response = await dio.get('https://viacep.com.br/ws/$cep/json/');
       var endereco =
           ResultadoBuscaCepModel.fromMap(response.data as Map<String, dynamic>);
-      return endereco;
+      return endereco.bairro == null
+          ? ResultadoBuscaCepModel.newInstance()
+          : endereco;
     } on DioError catch (error) {
       log('erro: ${error.response!.statusCode}');
-      return ResultadoBuscaCepModel(
-        bairro: '',
-        cep: '',
-        localidade: '',
-        logradouro: '',
-        uf: '',
-      );
+      rethrow;
     }
   }
 }

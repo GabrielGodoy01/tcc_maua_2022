@@ -73,6 +73,22 @@ mixin _$ClientesController on ClientesControllerBase, Store {
     });
   }
 
+  late final _$cepErrorAtom =
+      Atom(name: 'ClientesControllerBase.cepError', context: context);
+
+  @override
+  String get cepError {
+    _$cepErrorAtom.reportRead();
+    return super.cepError;
+  }
+
+  @override
+  set cepError(String value) {
+    _$cepErrorAtom.reportWrite(value, super.cepError, () {
+      super.cepError = value;
+    });
+  }
+
   late final _$procuraCepAsyncAction =
       AsyncAction('ClientesControllerBase.procuraCep', context: context);
 
@@ -230,7 +246,8 @@ mixin _$ClientesController on ClientesControllerBase, Store {
 cliente: ${cliente},
 enderecoCliente: ${enderecoCliente},
 endereco: ${endereco},
-listaClientes: ${listaClientes}
+listaClientes: ${listaClientes},
+cepError: ${cepError}
     ''';
   }
 }
