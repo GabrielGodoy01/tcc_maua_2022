@@ -1,5 +1,6 @@
 import '../../infra/model/estoque_model.dart';
 
 abstract class EstoqueRepositoryInterface {
-  Future<void> salvarItem(EstoqueModel item);
+  Future<void> criarNovoItem(EstoqueModel item);
+  Future<void> alterarItem(EstoqueModel item);
 }

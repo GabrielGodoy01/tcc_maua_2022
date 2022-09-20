@@ -8,7 +8,12 @@ class EstoqueRepositoryImpl implements EstoqueRepositoryInterface {
   EstoqueRepositoryImpl({required this.datasource});
 
   @override
-  Future<void> salvarItem(EstoqueModel item) async {
+  Future<void> alterarItem(EstoqueModel item) async {
+    await datasource.putItem(item);
+  }
+
+  @override
+  Future<void> criarNovoItem(EstoqueModel item) async {
     await datasource.postItem(item);
   }
 }

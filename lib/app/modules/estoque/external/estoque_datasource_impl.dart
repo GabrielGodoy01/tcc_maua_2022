@@ -14,7 +14,11 @@ class EstoqueDatasourceImpl extends EstoqueDatasourceInterface {
   Future postItem(EstoqueModel item) async {
     // dio post implementation
     estoque.add(item);
-    // ignore: avoid_print
-    print(estoque);
+  }
+
+  @override
+  Future putItem(EstoqueModel item) async {
+    // dio put implementation
+    estoque.add(item);
   }
 }

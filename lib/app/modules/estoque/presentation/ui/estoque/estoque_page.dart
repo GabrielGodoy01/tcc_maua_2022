@@ -7,7 +7,6 @@ import '../../../../../shared/domain/infra/tipo_campo_enum.dart';
 import '../../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
 import '../../../../../shared/widgets/fields/text_form_field_custom_widget.dart';
 import '../../../../../shared/widgets/form_button_widget.dart';
-import '../../../domain/infra/unidade_estoque_enum.dart';
 
 class EstoquePage extends StatefulWidget {
   const EstoquePage({Key? key}) : super(key: key);
@@ -92,14 +91,13 @@ class _EstoquePageState extends State<EstoquePage> {
                             titulo: 'Descrição *',
                             onChanged: controller.setDescricao,
                             isRequired: true,
-                            isNumber: true,
-                            value: controller.item.descricao,
+                            value: controller.estoque.descricao,
                           ),
                           TextFormFieldCustomWidget(
                             size: 1,
                             titulo: 'Localização',
                             onChanged: controller.setLocalizacao,
-                            value: controller.item.localizacao,
+                            value: controller.estoque.localizacao,
                           ),
                           TextFormFieldCustomWidget(
                             size: 2,
@@ -111,7 +109,7 @@ class _EstoquePageState extends State<EstoquePage> {
                             },
                             isRequired: true,
                             isNumber: true,
-                            value: controller.item.estoqueMinimo.toString(),
+                            value: controller.estoque.estoqueMinimo.toString(),
                           ),
                           TextFormFieldCustomWidget(
                             size: 2,
@@ -123,20 +121,7 @@ class _EstoquePageState extends State<EstoquePage> {
                             },
                             isRequired: true,
                             isNumber: true,
-                            value: controller.item.estoqueMaximo.toString(),
-                          ),
-                          DropDownFieldCustomWidget<UnidadeItemEnum>(
-                            titulo: 'Unidade *',
-                            isRequired: true,
-                            value: controller.item.unidadeItem,
-                            items: UnidadeItemEnum.values
-                                .map((UnidadeItemEnum value) {
-                              return DropdownMenuItem<UnidadeItemEnum>(
-                                value: value,
-                                child: Text(value.name),
-                              );
-                            }).toList(),
-                            onChanged: controller.setUnidade,
+                            value: controller.estoque.estoqueMaximo.toString(),
                           ),
                           TextFormFieldCustomWidget(
                             size: 2,
@@ -147,7 +132,7 @@ class _EstoquePageState extends State<EstoquePage> {
                               controller.setQuantidade(valor);
                             },
                             isNumber: true,
-                            value: controller.item.quantidade.toString(),
+                            value: controller.estoque.quantidade.toString(),
                           ),
                           TextFormFieldCustomWidget(
                             size: 2,
@@ -158,7 +143,7 @@ class _EstoquePageState extends State<EstoquePage> {
                               var valor = double.parse(value);
                               controller.setCusto(valor);
                             },
-                            value: controller.item.custo.toString(),
+                            value: controller.estoque.custo.toString(),
                           ),
                         ],
                       ),
@@ -228,7 +213,7 @@ class _EstoquePageState extends State<EstoquePage> {
                             children: [
                               DropDownFieldCustomWidget<EstoqueModel>(
                                 onChanged: (value) {
-                                  controller.item = value!;
+                                  controller.estoque = value!;
                                 },
                                 items: controller.listaItensEstoque
                                     .map((EstoqueModel value) {
@@ -251,7 +236,7 @@ class _EstoquePageState extends State<EstoquePage> {
                                     titulo: 'Cancelar',
                                     onPressed: () {
                                       Modular.to.pop();
-                                      controller.item =
+                                      controller.estoque =
                                           EstoqueModel.newInstance();
                                     },
                                   ),

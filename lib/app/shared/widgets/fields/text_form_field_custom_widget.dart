@@ -11,18 +11,20 @@ class TextFormFieldCustomWidget extends StatelessWidget {
   final String? value;
   final bool isNumber;
   final int size;
+  final bool? isEnabled;
   final TipoCampoTextoEnum tipoCampoTextoEnum;
-  const TextFormFieldCustomWidget(
-      {Key? key,
-      this.titulo,
-      this.onChanged,
-      this.isRequired = false,
-      this.isNumber = false,
-      this.value,
-      this.textInputFormatter,
-      this.tipoCampoTextoEnum = TipoCampoTextoEnum.texto,
-      required this.size})
-      : super(key: key);
+  const TextFormFieldCustomWidget({
+    Key? key,
+    this.titulo,
+    this.onChanged,
+    this.isRequired = false,
+    this.isNumber = false,
+    this.value,
+    this.textInputFormatter,
+    this.tipoCampoTextoEnum = TipoCampoTextoEnum.texto,
+    required this.size,
+    this.isEnabled = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +49,9 @@ class TextFormFieldCustomWidget extends StatelessWidget {
                         mask: '(00) 00000-0000',
                         text: value,
                         cursorBehavior: CursorBehaviour.end)
-                    : tipoCampoTextoEnum == TipoCampoTextoEnum.cpf
+                    : tipoCampoTextoEnum == TipoCampoTextoEnum.cep
                         ? MaskedTextController(
-                            mask: '000.000.000-00',
+                            mask: '00000-000',
                             text: value,
                             cursorBehavior: CursorBehaviour.end,
                           )
@@ -74,6 +76,7 @@ class TextFormFieldCustomWidget extends StatelessWidget {
             ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
             : (textInputFormatter != null ? [textInputFormatter!] : null),
         onChanged: onChanged,
+        enabled: isEnabled,
         style: const TextStyle(
           fontSize: 24,
         ),
@@ -82,8 +85,6 @@ class TextFormFieldCustomWidget extends StatelessWidget {
           labelStyle: const TextStyle(
             fontSize: 24,
           ),
-          suffixIcon: IconButton(
-              onPressed: controller.clear, icon: const Icon(Icons.close)),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           border: const OutlineInputBorder(),
