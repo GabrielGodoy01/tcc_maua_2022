@@ -135,4 +135,10 @@ abstract class ClientesControllerBase with Store {
       await repository.criarNovoItem(cliente);
     }
   }
+
+  @action
+  void limparTexto() {
+    cliente = ClientesModel.newInstance();
+    enderecoCliente = ResultadoBuscaCepModel.newInstance();
+  }
 }

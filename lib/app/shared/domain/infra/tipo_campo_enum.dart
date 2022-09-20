@@ -1,1 +1,8 @@
-enum TipoCampoTextoEnum { texto, numero, double, valor, telefone, cep }
+enum TipoCampoTextoEnum {
+  texto,
+  numero,
+  double,
+  valor,
+  telefone,
+  cep,
+}

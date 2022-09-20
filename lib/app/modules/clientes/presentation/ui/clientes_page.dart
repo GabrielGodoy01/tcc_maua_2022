@@ -92,7 +92,6 @@ class _ClientesPageState extends State<ClientesPage> {
                             titulo: 'Nome *',
                             onChanged: controller.setNome,
                             isRequired: true,
-                            isNumber: true,
                             value: controller.cliente.nome,
                           ),
                           TextFormFieldCustomWidget(
@@ -106,7 +105,6 @@ class _ClientesPageState extends State<ClientesPage> {
                             titulo: 'CNPJ/CPF *',
                             onChanged: controller.setCpf,
                             value: controller.cliente.cpf,
-                            tipoCampoTextoEnum: TipoCampoTextoEnum.numero,
                             isNumber: true,
                             isRequired: true,
                           ),
@@ -253,7 +251,9 @@ class _ClientesPageState extends State<ClientesPage> {
                             FormButtonWidget(
                               icon: Icons.replay_outlined,
                               titulo: 'Limpar',
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.limparTexto();
+                              },
                             ),
                           ],
                         ),

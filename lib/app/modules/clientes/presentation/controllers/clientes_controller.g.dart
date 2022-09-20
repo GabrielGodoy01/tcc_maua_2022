@@ -241,6 +241,17 @@ mixin _$ClientesController on ClientesControllerBase, Store {
   }
 
   @override
+  void limparTexto() {
+    final _$actionInfo = _$ClientesControllerBaseActionController.startAction(
+        name: 'ClientesControllerBase.limparTexto');
+    try {
+      return super.limparTexto();
+    } finally {
+      _$ClientesControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 cliente: ${cliente},
