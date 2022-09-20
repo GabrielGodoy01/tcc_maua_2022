@@ -21,6 +21,8 @@ dependencies:
   flutter_modular: ^5.0.3
   flutter_mobx: ^2.0.6+1
   mask_text_input_formatter: ^2.4.0
+  mockito: ^5.3.1
+  modular_test: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../domain/infra/tipo_campo_enum.dart';
 
 class TextFormFieldCustomWidget extends StatefulWidget {

@@ -141,17 +141,6 @@ mixin _$EstoqueController on EstoqueControllerBase, Store {
   }
 
   @override
-  void selectProduto(int id) {
-    final _$actionInfo = _$EstoqueControllerBaseActionController.startAction(
-        name: 'EstoqueControllerBase.selectProduto');
-    try {
-      return super.selectProduto(id);
-    } finally {
-      _$EstoqueControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 listaItensEstoque: ${listaItensEstoque},

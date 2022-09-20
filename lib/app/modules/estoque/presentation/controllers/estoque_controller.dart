@@ -85,10 +85,4 @@ abstract class EstoqueControllerBase with Store {
   void limparTexto() {
     estoque = EstoqueModel.newInstance();
   }
-
-  @action
-  void selectProduto(int id) {
-    estoque =
-        listaItensEstoque.firstWhere((element) => element.idEstoque == id);
-  }
 }
