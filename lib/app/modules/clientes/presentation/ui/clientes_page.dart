@@ -6,7 +6,7 @@ import 'package:tcc_maua_2022/app/modules/clientes/presentation/controllers/clie
 import 'package:tcc_maua_2022/app/shared/domain/infra/tipo_campo_enum.dart';
 import '../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
 import '../../../../shared/widgets/fields/text_form_field_custom_widget.dart';
-import '../../../../shared/widgets/form_button_widget.dart';
+import '../../../../shared/widgets/buttons/form_button_widget.dart';
 
 class ClientesPage extends StatefulWidget {
   const ClientesPage({super.key});

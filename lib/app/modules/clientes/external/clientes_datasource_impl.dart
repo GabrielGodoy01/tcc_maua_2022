@@ -11,6 +11,7 @@ class ClientesDatasourceImpl extends ClientesDatasourceInterface {
 
   List<ClientesModel> clientes = [
     ClientesModel(
+      idCliente: 0,
       telefones: ['11991273092'],
       nome: 'Hector Ronaldinho',
       razaoSocial: 'razão social',

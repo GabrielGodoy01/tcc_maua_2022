@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class EstoqueModel {
   final int? idEstoque;
   final String descricao;
@@ -5,7 +7,7 @@ class EstoqueModel {
   final int quantidade;
   final int estoqueMinimo;
   final int estoqueMaximo;
-  final double? custo;
+  final double custo;
 
   EstoqueModel({
     required this.quantidade,
@@ -14,7 +16,7 @@ class EstoqueModel {
     this.localizacao,
     required this.estoqueMinimo,
     required this.estoqueMaximo,
-    this.custo,
+    required this.custo,
   });
 
   factory EstoqueModel.newInstance() {
@@ -25,7 +27,7 @@ class EstoqueModel {
       quantidade: 0,
       estoqueMinimo: 0,
       estoqueMaximo: 0,
-      custo: 0,
+      custo: 0.0,
     );
   }
 
@@ -46,4 +48,33 @@ class EstoqueModel {
       custo: custo ?? this.custo,
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'idEstoque': idEstoque,
+      'descricao': descricao,
+      'localizacao': localizacao,
+      'quantidade': quantidade,
+      'estoqueMinimo': estoqueMinimo,
+      'estoqueMaximo': estoqueMaximo,
+      'custo': custo,
+    };
+  }
+
+  factory EstoqueModel.fromMap(Map<String, dynamic> map) {
+    return EstoqueModel(
+      idEstoque: map['idEstoque']?.toInt(),
+      descricao: map['descricao'] ?? '',
+      localizacao: map['localizacao'],
+      quantidade: map['quantidade']?.toInt() ?? 0,
+      estoqueMinimo: map['estoqueMinimo']?.toInt() ?? 0,
+      estoqueMaximo: map['estoqueMaximo']?.toInt() ?? 0,
+      custo: map['custo']?.toDouble(),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory EstoqueModel.fromJson(String source) =>
+      EstoqueModel.fromMap(json.decode(source));
 }

@@ -1,5 +1,5 @@
-import '../../domain/vendas_repository_interface.dart';
-import '../datasources/vendas_datasource.interface.dart';
+import '../../domain/repositories/vendas_repository_interface.dart';
+import '../datasources/vendas_datasource_interface.dart';
 
 class VendasRepositoryImpl implements VendasRepositoryInterface {
   final VendasDatasourceInterface datasource;

@@ -5,6 +5,7 @@ class DropDownFieldCustomWidget<T> extends StatelessWidget {
   final void Function(T? value)? onChanged;
   final List<DropdownMenuItem<T>> items;
   final bool isRequired;
+  final double? size;
 
   final T? value;
   const DropDownFieldCustomWidget({
@@ -14,12 +15,13 @@ class DropDownFieldCustomWidget<T> extends StatelessWidget {
     this.isRequired = false,
     this.onChanged,
     required this.items,
+    this.size,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
+      width: size ?? 200,
       child: DropdownButtonHideUnderline(
         child: DropdownButtonFormField<T>(
           validator: (value) {

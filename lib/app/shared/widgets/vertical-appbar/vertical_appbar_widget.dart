@@ -63,7 +63,7 @@ class VerticalAppbarWidget extends StatelessWidget {
               myIndex: 3,
               onPressed: () async {
                 await controller.toggleIndex(3);
-                Modular.to.navigate('/vendas');
+                Modular.to.navigate('/vendas/');
               },
               icon: Icons.attach_money,
             ),
