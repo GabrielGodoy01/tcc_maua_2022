@@ -15,7 +15,9 @@ abstract class ClientesControllerBase with Store {
   final BuscaCepDatasource buscaCepDatasource;
 
   ClientesControllerBase(
-      {required this.buscaCepDatasource, required this.repository});
+      {required this.buscaCepDatasource, required this.repository}) {
+    obterTodosClientes();
+  }
 
   @observable
   ClientesModel cliente = ClientesModel.newInstance();
@@ -27,21 +29,15 @@ abstract class ClientesControllerBase with Store {
   EnderecoModel endereco = EnderecoModel.newInstance();
 
   @observable
-  List<ClientesModel> listaClientes = [
-    ClientesModel(
-      telefones: ['110000000', '', ''],
-      nome: 'nome',
-      razaoSocial: 'razaoSocial',
-      cpf: 'cpf',
-      nomeContato: 'nomeContato',
-      rgContato: 'rgContato',
-      email: 'email',
-      enderecoModel: EnderecoModel(bairro: 'bairro', cep: 'cep'),
-    ),
-  ];
+  String cepError = '';
 
   @observable
-  String cepError = '';
+  List<ClientesModel> listaClientes = [];
+
+  @action
+  Future obterTodosClientes() async {
+    listaClientes = await repository.obterTodosClientes();
+  }
 
   @action
   Future<void> procuraCep(String cep) async {

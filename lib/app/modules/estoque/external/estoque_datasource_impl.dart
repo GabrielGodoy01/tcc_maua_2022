@@ -8,7 +8,27 @@ class EstoqueDatasourceImpl extends EstoqueDatasourceInterface {
 
   EstoqueDatasourceImpl({required this.dioClient});
 
-  List<EstoqueModel> estoque = [];
+  List<EstoqueModel> estoque = [
+    EstoqueModel(
+      quantidade: 10,
+      descricao:
+          'descricaodescricaodescricaodescricaodescricaodescricaodescricaodescricao',
+      estoqueMinimo: 10,
+      estoqueMaximo: 10,
+      custo: 100,
+      idEstoque: 0,
+      localizacao: 'localizacao',
+    ),
+    EstoqueModel(
+      quantidade: 10,
+      descricao: 'descricao',
+      estoqueMinimo: 10,
+      estoqueMaximo: 10,
+      custo: 100,
+      idEstoque: 0,
+      localizacao: 'localizacao',
+    ),
+  ];
 
   @override
   Future postItem(EstoqueModel item) async {
@@ -20,5 +40,11 @@ class EstoqueDatasourceImpl extends EstoqueDatasourceInterface {
   Future putItem(EstoqueModel item) async {
     // dio put implementation
     estoque.add(item);
+  }
+
+  @override
+  Future<List<EstoqueModel>> getAllItems() {
+    // dio get all implementation
+    return Future.value(estoque);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/domain/repositories/estoque_repository_interface.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/infra/model/estoque_model.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/presentation/controllers/estoque_controller.dart';
@@ -10,21 +11,27 @@ import 'estoque_controller_test.mocks.dart';
 void main() {
   late EstoqueController controller;
   EstoqueRepositoryInterface repository = MockEstoqueRepositoryInterface();
+  var estoqueMock = [
+    EstoqueModel(
+      quantidade: 10,
+      descricao:
+          'descricaodescricaodescricaodescricaodescricaodescricaodescricaodescricao',
+      estoqueMinimo: 10,
+      estoqueMaximo: 10,
+      custo: 100,
+      idEstoque: 0,
+      localizacao: 'localizacao',
+    ),
+  ];
 
   setUpAll(() async {
+    when(repository.obterTodosEstoques()).thenAnswer((_) async => estoqueMock);
     controller = EstoqueController(repository);
-    controller.listaItensEstoque = [
-      EstoqueModel(
-        quantidade: 10,
-        descricao:
-            'descricaodescricaodescricaodescricaodescricaodescricaodescricaodescricao',
-        estoqueMinimo: 10,
-        estoqueMaximo: 10,
-        custo: 100,
-        idEstoque: 0,
-        localizacao: 'localizacao',
-      ),
-    ];
+  });
+
+  test('obterTodosEstoque', () {
+    controller.obterTodosEstoque();
+    expect(controller.listaItensEstoque, estoqueMock);
   });
 
   test('setDescricao', () {

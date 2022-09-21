@@ -41,6 +41,14 @@ mixin _$EstoqueController on EstoqueControllerBase, Store {
     });
   }
 
+  late final _$obterTodosEstoqueAsyncAction =
+      AsyncAction('EstoqueControllerBase.obterTodosEstoque', context: context);
+
+  @override
+  Future<dynamic> obterTodosEstoque() {
+    return _$obterTodosEstoqueAsyncAction.run(() => super.obterTodosEstoque());
+  }
+
   late final _$salvarItemAsyncAction =
       AsyncAction('EstoqueControllerBase.salvarItem', context: context);
 

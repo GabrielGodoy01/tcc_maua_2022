@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tcc_maua_2022/app/modules/clientes/domain/repositories/clientes_repository_interface.dart';
 import 'package:tcc_maua_2022/app/modules/clientes/external/busca_cep_datasource.dart';
+import 'package:tcc_maua_2022/app/modules/clientes/infra/model/clientes_model.dart';
+import 'package:tcc_maua_2022/app/modules/clientes/infra/model/endereco_model.dart';
 import 'package:tcc_maua_2022/app/modules/clientes/infra/model/resultado_busca_cep_model.dart';
 import 'package:tcc_maua_2022/app/modules/clientes/presentation/controllers/clientes_controller.dart';
 
@@ -15,14 +17,32 @@ void main() {
   BuscaCepDatasource buscaCepDatasource = MockBuscaCepDatasource();
   var cepErrado = '000';
   var cepCerto = '09581570';
+  List<ClientesModel> clientesMock = [
+    ClientesModel(
+      telefones: [],
+      nome: 'nome',
+      razaoSocial: 'razaoSocial',
+      cpf: 'cpf',
+      nomeContato: 'nomeContato',
+      rgContato: 'rgContato',
+      email: 'email',
+      enderecoModel: EnderecoModel(),
+    )
+  ];
 
   setUpAll(() async {
     when(buscaCepDatasource.getCepExterno(cepErrado))
         .thenAnswer((_) async => ResultadoBuscaCepModel.newInstance());
     when(buscaCepDatasource.getCepExterno(cepCerto))
         .thenAnswer((_) async => ResultadoBuscaCepModel(uf: 'SP'));
+    when(repository.obterTodosClientes()).thenAnswer((_) async => clientesMock);
     controller = ClientesController(
         buscaCepDatasource: buscaCepDatasource, repository: repository);
+  });
+
+  test('obterTodosClientes', () async {
+    await controller.obterTodosClientes();
+    expect(controller.listaClientes, clientesMock);
   });
 
   test('procuraCep com CEP escrito errado - Erro', () async {

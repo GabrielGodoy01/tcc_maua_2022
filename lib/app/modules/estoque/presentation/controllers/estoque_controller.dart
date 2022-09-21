@@ -8,33 +8,20 @@ class EstoqueController = EstoqueControllerBase with _$EstoqueController;
 
 abstract class EstoqueControllerBase with Store {
   final EstoqueRepositoryInterface repository;
-  EstoqueControllerBase(this.repository);
+  EstoqueControllerBase(this.repository) {
+    obterTodosEstoque();
+  }
 
   @observable
-  List<EstoqueModel> listaItensEstoque = [
-    EstoqueModel(
-      quantidade: 10,
-      descricao:
-          'descricaodescricaodescricaodescricaodescricaodescricaodescricaodescricao',
-      estoqueMinimo: 10,
-      estoqueMaximo: 10,
-      custo: 100,
-      idEstoque: 0,
-      localizacao: 'localizacao',
-    ),
-    EstoqueModel(
-      quantidade: 10,
-      descricao: 'descricao',
-      estoqueMinimo: 10,
-      estoqueMaximo: 10,
-      custo: 100,
-      idEstoque: 0,
-      localizacao: 'localizacao',
-    ),
-  ];
+  List<EstoqueModel> listaItensEstoque = [];
 
   @observable
   EstoqueModel estoque = EstoqueModel.newInstance();
+
+  @action
+  Future obterTodosEstoque() async {
+    listaItensEstoque = await repository.obterTodosEstoques();
+  }
 
   @action
   void setDescricao(String value) {
