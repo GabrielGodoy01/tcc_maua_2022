@@ -138,6 +138,17 @@ mixin _$EstoqueController on EstoqueControllerBase, Store {
   }
 
   @override
+  void selectEstoque(EstoqueModel estoqueToChange) {
+    final _$actionInfo = _$EstoqueControllerBaseActionController.startAction(
+        name: 'EstoqueControllerBase.selectEstoque');
+    try {
+      return super.selectEstoque(estoqueToChange);
+    } finally {
+      _$EstoqueControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void limparTexto() {
     final _$actionInfo = _$EstoqueControllerBaseActionController.startAction(
         name: 'EstoqueControllerBase.limparTexto');

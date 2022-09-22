@@ -107,6 +107,14 @@ mixin _$VendasController on VendasControllerBase, Store {
     return _$initAsyncAction.run(() => super.init());
   }
 
+  late final _$realizarVendaAsyncAction =
+      AsyncAction('VendasControllerBase.realizarVenda', context: context);
+
+  @override
+  Future<dynamic> realizarVenda() {
+    return _$realizarVendaAsyncAction.run(() => super.realizarVenda());
+  }
+
   late final _$VendasControllerBaseActionController =
       ActionController(name: 'VendasControllerBase', context: context);
 

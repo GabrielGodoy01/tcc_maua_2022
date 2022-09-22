@@ -70,6 +70,16 @@ class VerticalAppbarWidget extends StatelessWidget {
             const SizedBox(
               height: 32,
             ),
+            VerticalNavbarButtonWidget(
+              buttonText: 'RELATÓRIOS',
+              indexToShow: controller.indexToShow,
+              myIndex: 4,
+              onPressed: () async {
+                await controller.toggleIndex(4);
+                Modular.to.navigate('/relatorios/');
+              },
+              icon: Icons.show_chart,
+            ),
           ]),
         ),
       );
