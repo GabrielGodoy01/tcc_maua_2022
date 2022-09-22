@@ -12,7 +12,7 @@ class RelatoriosPage extends StatelessWidget {
         child: RelatoriosButtonWidget(
           nomeRelatorio: 'Estoque',
           icon: Icons.grid_on,
-          onPressed: () => Modular.to.navigate('/home'),
+          onPressed: () => Modular.to.navigate('/relatorios/estoque'),
         ),
       ),
     );

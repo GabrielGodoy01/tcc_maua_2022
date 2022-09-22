@@ -10,23 +10,22 @@ class EstoqueDatasourceImpl extends EstoqueDatasourceInterface {
 
   List<EstoqueModel> estoque = [
     EstoqueModel(
-      quantidade: 10,
-      descricao:
-          'descricaodescricaodescricaodescricaodescricaodescricaodescricaodescricao',
-      estoqueMinimo: 10,
-      estoqueMaximo: 10,
-      custo: 100,
+      quantidade: 9,
+      descricao: 'Capô Camaro 2014',
+      estoqueMinimo: 5,
+      estoqueMaximo: 20,
+      custo: 6700,
       idEstoque: 0,
-      localizacao: 'localizacao',
+      localizacao: 'Ribeirão Preto',
     ),
     EstoqueModel(
-      quantidade: 10,
-      descricao: 'descricao',
+      quantidade: 13,
+      descricao: 'Porta Saveiro 2013',
       estoqueMinimo: 10,
-      estoqueMaximo: 10,
-      custo: 100,
-      idEstoque: 0,
-      localizacao: 'localizacao',
+      estoqueMaximo: 25,
+      custo: 1000,
+      idEstoque: 1,
+      localizacao: 'São Paulo - SP',
     ),
   ];
 
