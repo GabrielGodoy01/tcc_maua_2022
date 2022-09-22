@@ -6,8 +6,8 @@ import 'package:tcc_maua_2022/app/modules/vendas/presentation/ui/widgets/rows/ro
 import 'package:tcc_maua_2022/app/modules/vendas/presentation/ui/widgets/rows/row_estatica_widget.dart';
 import 'package:tcc_maua_2022/app/shared/widgets/dialogs/custom_alert_dialog.dart';
 
-import '../../../../shared/widgets/buttons/form_button_widget.dart';
-import '../controllers/vendas_controller.dart';
+import '../../../../../shared/widgets/buttons/form_button_widget.dart';
+import '../../controllers/vendas_controller.dart';
 
 class VendasPage extends StatelessWidget {
   const VendasPage({super.key});
@@ -213,8 +213,7 @@ class VendasPage extends StatelessWidget {
                                   buttonTitle: 'Entendido'),
                             );
                           } else {
-                            controller.realizarVenda();
-                            Modular.to.navigate('/vendas');
+                            Modular.to.navigate('/vendas/pagamento');
                           }
                         },
                       ),
