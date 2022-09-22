@@ -6,7 +6,7 @@ import 'package:tcc_maua_2022/app/modules/estoque/presentation/controllers/estoq
 import '../../../../../shared/domain/infra/tipo_campo_enum.dart';
 import '../../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
 import '../../../../../shared/widgets/fields/text_form_field_custom_widget.dart';
-import '../../../../../shared/widgets/form_button_widget.dart';
+import '../../../../../shared/widgets/buttons/form_button_widget.dart';
 
 class EstoquePage extends StatefulWidget {
   const EstoquePage({Key? key}) : super(key: key);
@@ -213,7 +213,7 @@ class _EstoquePageState extends State<EstoquePage> {
                             children: [
                               DropDownFieldCustomWidget<EstoqueModel>(
                                 onChanged: (value) {
-                                  controller.estoque = value!;
+                                  controller.selectEstoque(value!);
                                 },
                                 items: controller.listaItensEstoque
                                     .map((EstoqueModel value) {

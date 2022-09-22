@@ -49,4 +49,14 @@ class MockEstoqueRepositoryInterface extends _i1.Mock
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+  @override
+  _i3.Future<List<_i4.EstoqueModel>> obterTodosEstoques() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #obterTodosEstoques,
+          [],
+        ),
+        returnValue:
+            _i3.Future<List<_i4.EstoqueModel>>.value(<_i4.EstoqueModel>[]),
+      ) as _i3.Future<List<_i4.EstoqueModel>>);
 }

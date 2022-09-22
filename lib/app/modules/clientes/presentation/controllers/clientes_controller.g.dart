@@ -57,6 +57,22 @@ mixin _$ClientesController on ClientesControllerBase, Store {
     });
   }
 
+  late final _$cepErrorAtom =
+      Atom(name: 'ClientesControllerBase.cepError', context: context);
+
+  @override
+  String get cepError {
+    _$cepErrorAtom.reportRead();
+    return super.cepError;
+  }
+
+  @override
+  set cepError(String value) {
+    _$cepErrorAtom.reportWrite(value, super.cepError, () {
+      super.cepError = value;
+    });
+  }
+
   late final _$listaClientesAtom =
       Atom(name: 'ClientesControllerBase.listaClientes', context: context);
 
@@ -73,20 +89,14 @@ mixin _$ClientesController on ClientesControllerBase, Store {
     });
   }
 
-  late final _$cepErrorAtom =
-      Atom(name: 'ClientesControllerBase.cepError', context: context);
+  late final _$obterTodosClientesAsyncAction = AsyncAction(
+      'ClientesControllerBase.obterTodosClientes',
+      context: context);
 
   @override
-  String get cepError {
-    _$cepErrorAtom.reportRead();
-    return super.cepError;
-  }
-
-  @override
-  set cepError(String value) {
-    _$cepErrorAtom.reportWrite(value, super.cepError, () {
-      super.cepError = value;
-    });
+  Future<dynamic> obterTodosClientes() {
+    return _$obterTodosClientesAsyncAction
+        .run(() => super.obterTodosClientes());
   }
 
   late final _$procuraCepAsyncAction =
@@ -257,8 +267,8 @@ mixin _$ClientesController on ClientesControllerBase, Store {
 cliente: ${cliente},
 enderecoCliente: ${enderecoCliente},
 endereco: ${endereco},
-listaClientes: ${listaClientes},
-cepError: ${cepError}
+cepError: ${cepError},
+listaClientes: ${listaClientes}
     ''';
   }
 }

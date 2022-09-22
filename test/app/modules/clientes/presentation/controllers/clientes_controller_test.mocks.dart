@@ -76,6 +76,16 @@ class MockClientesRepositoryInterface extends _i1.Mock
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+  @override
+  _i5.Future<List<_i6.ClientesModel>> obterTodosClientes() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #obterTodosClientes,
+          [],
+        ),
+        returnValue:
+            _i5.Future<List<_i6.ClientesModel>>.value(<_i6.ClientesModel>[]),
+      ) as _i5.Future<List<_i6.ClientesModel>>);
 }
 
 /// A class which mocks [BuscaCepDatasource].
