@@ -59,7 +59,7 @@ class _TextFormFieldCustomWidgetState extends State<TextFormFieldCustomWidget> {
                             text: widget.value,
                             cursorBehavior: CursorBehaviour.end,
                           )
-                        : null;
+                        : TextEditingController(text: widget.value);
 
     return SizedBox(
       width: widget.size == 0

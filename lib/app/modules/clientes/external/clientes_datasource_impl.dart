@@ -12,7 +12,7 @@ class ClientesDatasourceImpl extends ClientesDatasourceInterface {
   List<ClientesModel> clientes = [
     ClientesModel(
       idCliente: 0,
-      telefones: ['11991273092'],
+      telefones: ['11991273092', '11991273092', '11991273092'],
       nome: 'Hector Ronaldinho',
       razaoSocial: 'razão social',
       cpf: '',
@@ -20,9 +20,9 @@ class ClientesDatasourceImpl extends ClientesDatasourceInterface {
       rgContato: 'rgContato',
       email: 'email',
       enderecoModel: EnderecoModel(
-        bairro: '',
+        bairro: 'SIM',
         cep: '',
-        cidade: '',
+        cidade: 'SIM',
       ),
     )
   ];

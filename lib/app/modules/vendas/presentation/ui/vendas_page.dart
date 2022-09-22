@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/infra/model/estoque_model.dart';
+import 'package:tcc_maua_2022/app/modules/vendas/presentation/ui/widgets/rows/row_editavel_widget.dart';
+import 'package:tcc_maua_2022/app/modules/vendas/presentation/ui/widgets/rows/row_estatica_widget.dart';
+import 'package:tcc_maua_2022/app/shared/widgets/dialogs/custom_alert_dialog.dart';
 
-import '../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
-import '../../../../shared/widgets/fields/text_form_field_custom_widget.dart';
+import '../../../../shared/widgets/buttons/form_button_widget.dart';
 import '../controllers/vendas_controller.dart';
 
 class VendasPage extends StatelessWidget {
@@ -31,8 +33,8 @@ class VendasPage extends StatelessWidget {
                 ),
               ],
             ),
-            height: MediaQuery.of(context).size.height * 0.8,
-            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.7,
+            width: MediaQuery.of(context).size.width * 0.7,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
               child: Column(
@@ -46,26 +48,31 @@ class VendasPage extends StatelessWidget {
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      Text(
-                        'Descrição',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                    children: [
+                      const SizedBox(
+                        width: 500,
+                        child: Text(
+                          'Descrição',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 64,
                       ),
                       SizedBox(
-                        width: 8,
+                        width: MediaQuery.of(context).size.width * 0.1,
+                        child: const Text(
+                          'Quantidade',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      Text(
-                        'Quantidade',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                      const SizedBox(
+                        width: 64,
                       ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
+                      const Text(
                         'Custo Final',
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold),
@@ -76,75 +83,143 @@ class VendasPage extends StatelessWidget {
                     child: Observer(builder: (_) {
                       return ListView.builder(
                         itemCount: controller.venda.listaItensVenda.length + 1,
-                        itemBuilder: (context, index) => Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            DropDownFieldCustomWidget<EstoqueModel>(
-                              onChanged: (value) {
-                                controller.setItemEstoque(value!);
-                              },
-                              items: controller.listaEstoqueCadastrados
-                                  .map((EstoqueModel value) {
-                                return DropdownMenuItem<EstoqueModel>(
-                                  value: value,
-                                  child: Text(value.descricao),
-                                );
-                              }).toList(),
-                            ),
-                            TextFormFieldCustomWidget(
-                              size: 1,
-                              titulo: 'Quantidade',
-                              onChanged: (value) {
-                                controller.setQuantidade(int.parse(value));
-                                controller.setCustoFinal();
-                              },
-                              isRequired: true,
-                              isNumber: true,
-                              value:
-                                  controller.composicao.quantidade.toString(),
-                            ),
-                            Observer(builder: (_) {
-                              return Text(
-                                  controller.composicao.custoFinal.toString());
-                            }),
-                            SizedBox(
-                              height: 50,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    textStyle: const TextStyle(fontSize: 24),
-                                    elevation: 10,
-                                    backgroundColor: controller
-                                                .venda.listaItensVenda.length ==
-                                            index
-                                        ? Colors.blue
-                                        : Colors.red,
-                                  ),
-                                  onPressed: () {
-                                    controller.venda.listaItensVenda.length ==
-                                            index
-                                        ? controller.adicionarComposicao()
-                                        : controller.removerComposicao(index);
-                                  },
-                                  child:
-                                      controller.venda.listaItensVenda.length ==
-                                              index
-                                          ? const Icon(
+                        itemBuilder: (context, index) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: Observer(builder: (_) {
+                              return controller.venda.listaItensVenda.length ==
+                                      index
+                                  ? RowEditavelWidth(
+                                      onChangedDescricao: (value) {
+                                        controller.setItemEstoque(value!);
+                                      },
+                                      items: controller.listaEstoqueCadastrados
+                                          .map((EstoqueModel value) {
+                                        return DropdownMenuItem<EstoqueModel>(
+                                          value: value,
+                                          child: Text(value.descricao),
+                                        );
+                                      }).toList(),
+                                      quantidade: controller
+                                          .composicao.quantidade
+                                          .toString(),
+                                      onChangedQuantidade: (value) {
+                                        controller
+                                            .setQuantidade(int.parse(value));
+                                        controller.setCustoFinal(index);
+                                      },
+                                      custoFinal: controller.listaCustos.isEmpty
+                                          ? 'R\$ 0,00'
+                                          : 'R\$ ${controller.listaCustos[index]!.toStringAsFixed(2).replaceAll('.', ',')}',
+                                      button: SizedBox(
+                                        height: 50,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              textStyle:
+                                                  const TextStyle(fontSize: 24),
+                                              elevation: 10,
+                                              backgroundColor: controller
+                                                          .venda
+                                                          .listaItensVenda
+                                                          .length ==
+                                                      index
+                                                  ? Colors.blue
+                                                  : Colors.red,
+                                            ),
+                                            onPressed: () {
+                                              controller.venda.listaItensVenda
+                                                          .length ==
+                                                      index
+                                                  ? controller
+                                                      .adicionarComposicao()
+                                                  : controller
+                                                      .removerComposicao(index);
+                                            },
+                                            child: const Icon(
                                               Icons.add,
                                               color: Colors.white,
                                               size: 24.0,
-                                            )
-                                          : const Icon(
-                                              Icons.remove,
-                                              color: Colors.white,
-                                              size: 24.0,
                                             )),
-                            ),
-                          ],
-                        ),
+                                      ),
+                                    )
+                                  : RowEstaticaWidget(
+                                      custoFinal:
+                                          'R\$ ${controller.venda.listaItensVenda[index].custoFinal!.toStringAsFixed(2).replaceAll('.', ',')}',
+                                      descricao: controller
+                                          .venda
+                                          .listaItensVenda[index]
+                                          .estoque
+                                          .descricao,
+                                      quantidade: controller.venda
+                                          .listaItensVenda[index].quantidade
+                                          .toString(),
+                                      button: SizedBox(
+                                        height: 50,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            textStyle:
+                                                const TextStyle(fontSize: 24),
+                                            elevation: 10,
+                                            backgroundColor: controller
+                                                        .venda
+                                                        .listaItensVenda
+                                                        .length ==
+                                                    index
+                                                ? Colors.blue
+                                                : Colors.red,
+                                          ),
+                                          onPressed: () {
+                                            controller.venda.listaItensVenda
+                                                        .length ==
+                                                    index
+                                                ? controller
+                                                    .adicionarComposicao()
+                                                : controller
+                                                    .removerComposicao(index);
+                                          },
+                                          child: const Icon(
+                                            Icons.remove,
+                                            color: Colors.white,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                            })),
                       );
                     }),
-                  )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Observer(builder: (_) {
+                        return Text(
+                          'Total: R\$ ${controller.getTotal.toStringAsFixed(2).replaceAll('.', ',')}',
+                          style: const TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        );
+                      }),
+                      const SizedBox(
+                        width: 32,
+                      ),
+                      FormButtonWidget(
+                        icon: Icons.check,
+                        titulo: 'Confirmar',
+                        onPressed: () {
+                          if (controller.venda.listaItensVenda.isEmpty) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => const CustomAlertDialog(
+                                  title: 'Adicione pelo menos um produto',
+                                  buttonTitle: 'Entendido'),
+                            );
+                          } else {
+                            controller.realizarVenda();
+                            Modular.to.navigate('/vendas');
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

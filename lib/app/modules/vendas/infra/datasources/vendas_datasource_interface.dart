@@ -1,3 +1,5 @@
+import '../model/vendas_model.dart';
+
 abstract class VendasDatasourceInterface {
-  Future postVenda();
+  Future postVenda(VendasModel venda);
 }

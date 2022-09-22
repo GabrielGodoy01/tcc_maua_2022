@@ -327,6 +327,9 @@ class _ClientesPageState extends State<ClientesPage> {
                                           ClientesModel.newInstance();
                                     },
                                   ),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
                                   FormButtonWidget(
                                     icon: Icons.verified,
                                     titulo: 'Confirmar',

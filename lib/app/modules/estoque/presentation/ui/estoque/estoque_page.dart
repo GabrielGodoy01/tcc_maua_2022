@@ -213,7 +213,7 @@ class _EstoquePageState extends State<EstoquePage> {
                             children: [
                               DropDownFieldCustomWidget<EstoqueModel>(
                                 onChanged: (value) {
-                                  controller.estoque = value!;
+                                  controller.selectEstoque(value!);
                                 },
                                 items: controller.listaItensEstoque
                                     .map((EstoqueModel value) {

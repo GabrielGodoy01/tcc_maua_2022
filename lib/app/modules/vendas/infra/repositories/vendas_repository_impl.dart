@@ -1,5 +1,6 @@
 import '../../domain/repositories/vendas_repository_interface.dart';
 import '../datasources/vendas_datasource_interface.dart';
+import '../model/vendas_model.dart';
 
 class VendasRepositoryImpl implements VendasRepositoryInterface {
   final VendasDatasourceInterface datasource;
@@ -7,7 +8,7 @@ class VendasRepositoryImpl implements VendasRepositoryInterface {
   VendasRepositoryImpl({required this.datasource});
 
   @override
-  Future<void> registrarVenda() async {
-    await datasource.postVenda();
+  Future<void> registrarVenda(VendasModel venda) async {
+    await datasource.postVenda(venda);
   }
 }

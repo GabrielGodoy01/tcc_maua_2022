@@ -1,3 +1,5 @@
+import '../../infra/model/vendas_model.dart';
+
 abstract class VendasRepositoryInterface {
-  Future<void> registrarVenda();
+  Future<void> registrarVenda(VendasModel venda);
 }

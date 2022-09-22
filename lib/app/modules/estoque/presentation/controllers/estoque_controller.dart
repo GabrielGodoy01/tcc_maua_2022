@@ -60,6 +60,11 @@ abstract class EstoqueControllerBase with Store {
   }
 
   @action
+  void selectEstoque(EstoqueModel estoqueToChange) {
+    estoque = estoqueToChange;
+  }
+
+  @action
   Future<void> salvarItem() async {
     if (estoque.idEstoque != null) {
       await repository.alterarItem(estoque);
