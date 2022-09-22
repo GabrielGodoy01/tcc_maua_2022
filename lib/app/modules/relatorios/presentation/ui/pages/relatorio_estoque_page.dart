@@ -9,9 +9,8 @@ class RelatorioEstoquePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Modular.get<RelatoriosController>();
-    return Scaffold(
-      body: SafeArea(
-          child: Center(
+    return SafeArea(
+      child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
           child: Column(
@@ -180,7 +179,7 @@ class RelatorioEstoquePage extends StatelessWidget {
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 }
