@@ -3,10 +3,10 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tcc_maua_2022/app/modules/vendas/presentation/controllers/vendas_controller.dart';
 
-import '../../../../shared/widgets/dialogs/custom_alert_dialog.dart';
-import '../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
-import '../../../../shared/widgets/buttons/form_button_widget.dart';
-import '../../../clientes/infra/model/clientes_model.dart';
+import '../../../../../shared/widgets/dialogs/custom_alert_dialog.dart';
+import '../../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
+import '../../../../../shared/widgets/buttons/form_button_widget.dart';
+import '../../../../clientes/infra/model/clientes_model.dart';
 
 class SelecaoClientePage extends StatelessWidget {
   const SelecaoClientePage({super.key});

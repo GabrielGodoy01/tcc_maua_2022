@@ -1,7 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tcc_maua_2022/app/modules/vendas/presentation/controllers/vendas_controller.dart';
-import 'package:tcc_maua_2022/app/modules/vendas/presentation/ui/selecao_cliente_page.dart';
-import 'package:tcc_maua_2022/app/modules/vendas/presentation/ui/vendas_page.dart';
+import 'package:tcc_maua_2022/app/modules/vendas/presentation/ui/pages/selecao_cliente_page.dart';
+import 'package:tcc_maua_2022/app/modules/vendas/presentation/ui/pages/selecao_pagamento_page.dart';
+import 'package:tcc_maua_2022/app/modules/vendas/presentation/ui/pages/vendas_page.dart';
 import '../clientes/domain/repositories/clientes_repository_interface.dart';
 import '../clientes/external/clientes_datasource_impl.dart';
 import '../clientes/infra/datasources/clientes_datasource_interface.dart';
@@ -43,6 +44,10 @@ class VendasModule extends Module {
     ChildRoute(
       '/listarVenda',
       child: (context, args) => const VendasPage(),
+    ),
+    ChildRoute(
+      '/pagamento',
+      child: (context, args) => const SelecaoPagamentoPage(),
     ),
   ];
 }

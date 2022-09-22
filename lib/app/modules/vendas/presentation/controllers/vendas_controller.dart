@@ -5,6 +5,7 @@ import 'package:tcc_maua_2022/app/modules/estoque/infra/model/estoque_model.dart
 import 'package:tcc_maua_2022/app/modules/vendas/domain/repositories/vendas_repository_interface.dart';
 
 import '../../../clientes/infra/model/clientes_model.dart';
+import '../../domain/infra/tipo_pagamento_enum.dart';
 import '../../infra/model/estoque_venda_model.dart';
 import '../../infra/model/vendas_model.dart';
 
@@ -47,6 +48,11 @@ abstract class VendasControllerBase with Store {
   }
 
   @action
+  void setPagamento(TipoPagamentoEnum pagamento) {
+    venda = venda.copyWith(tipoPagamento: pagamento);
+  }
+
+  @action
   void setCliente(ClientesModel clientesModel) {
     venda = venda.copyWith(cliente: clientesModel);
   }
@@ -84,6 +90,7 @@ abstract class VendasControllerBase with Store {
       lista.add(composicao);
       listaCustos.add(0);
       venda = venda.copyWith(listaItensVenda: lista);
+      composicao = EstoqueVendaModel.newInstance();
     }
   }
 

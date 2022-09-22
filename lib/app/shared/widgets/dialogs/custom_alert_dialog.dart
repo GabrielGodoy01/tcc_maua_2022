@@ -6,8 +6,12 @@ import '../buttons/form_button_widget.dart';
 class CustomAlertDialog extends StatelessWidget {
   final String title;
   final String buttonTitle;
+  final Function()? onPressed;
   const CustomAlertDialog(
-      {super.key, required this.title, required this.buttonTitle});
+      {super.key,
+      required this.title,
+      required this.buttonTitle,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +25,10 @@ class CustomAlertDialog extends StatelessWidget {
         backgroundColor: Colors.blue,
         icon: Icons.check,
         titulo: buttonTitle,
-        onPressed: () {
-          Modular.to.pop();
-        },
+        onPressed: onPressed ??
+            () {
+              Modular.to.pop();
+            },
       ),
     );
   }
