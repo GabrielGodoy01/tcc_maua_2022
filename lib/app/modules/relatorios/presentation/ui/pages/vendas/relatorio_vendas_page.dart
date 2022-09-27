@@ -3,6 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tcc_maua_2022/app/modules/relatorios/presentation/ui/pages/widgets/venda_card_widget.dart';
 
+import '../../../../../../shared/widgets/buttons/form_button_widget.dart';
+import '../../../../../../shared/widgets/dialogs/custom_alert_dialog.dart';
 import '../../../controllers/vendas/relatorios_vendas_controller.dart';
 
 class RelatorioVendasPage extends StatelessWidget {
@@ -26,7 +28,7 @@ class RelatorioVendasPage extends StatelessWidget {
                 ),
               ),
               Observer(builder: (_) {
-                return Flexible(
+                return Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: controller.listaPanelVendas.length,
@@ -47,6 +49,24 @@ class RelatorioVendasPage extends StatelessWidget {
                   ),
                 );
               }),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: FormButtonWidget(
+                  icon: Icons.download,
+                  titulo: 'Baixar Relatório',
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const CustomAlertDialog(
+                          buttonTitle: 'Entendido',
+                          title: 'Ainda em produção!',
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

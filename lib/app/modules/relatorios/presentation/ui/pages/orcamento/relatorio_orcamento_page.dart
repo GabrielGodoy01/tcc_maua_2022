@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../../../../shared/widgets/buttons/form_button_widget.dart';
+import '../../../../../../shared/widgets/dialogs/custom_alert_dialog.dart';
 import '../../../controllers/orcamento/relatorios_orcamento_controller.dart';
 import '../widgets/venda_card_widget.dart';
 
@@ -26,7 +28,7 @@ class RelatorioOrcamentoPage extends StatelessWidget {
                 ),
               ),
               Observer(builder: (_) {
-                return Flexible(
+                return Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: controller.listaPanelOrcamentos.length,
@@ -47,6 +49,24 @@ class RelatorioOrcamentoPage extends StatelessWidget {
                   ),
                 );
               }),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: FormButtonWidget(
+                  icon: Icons.download,
+                  titulo: 'Baixar Relatório',
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const CustomAlertDialog(
+                          buttonTitle: 'Entendido',
+                          title: 'Ainda em produção!',
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

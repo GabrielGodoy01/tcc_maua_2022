@@ -3,6 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tcc_maua_2022/app/modules/relatorios/presentation/controllers/estoque/relatorios_estoque_controller.dart';
 
+import '../../../../../../shared/widgets/buttons/form_button_widget.dart';
+import '../../../../../../shared/widgets/dialogs/custom_alert_dialog.dart';
+
 class RelatorioEstoquePage extends StatelessWidget {
   const RelatorioEstoquePage({super.key});
 
@@ -86,7 +89,7 @@ class RelatorioEstoquePage extends StatelessWidget {
                 color: Colors.black,
               ),
               Observer(builder: (_) {
-                return Flexible(
+                return Expanded(
                     child: controller.listaItensEstoque.isEmpty
                         ? const Center(
                             child: CircularProgressIndicator(
@@ -176,6 +179,24 @@ class RelatorioEstoquePage extends StatelessWidget {
                             },
                           ));
               }),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: FormButtonWidget(
+                  icon: Icons.download,
+                  titulo: 'Baixar Relatório',
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const CustomAlertDialog(
+                          buttonTitle: 'Entendido',
+                          title: 'Ainda em produção!',
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

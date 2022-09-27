@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../vendas/domain/infra/tipo_pagamento_enum.dart';
-import '../../../../../vendas/infra/model/estoque_venda_model.dart';
 import '../../../../../vendas/infra/model/vendas_model.dart';
 
 class VendaCardWidget extends StatelessWidget {
