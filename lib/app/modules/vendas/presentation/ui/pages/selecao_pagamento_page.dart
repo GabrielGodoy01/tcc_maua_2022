@@ -88,7 +88,7 @@ class SelecaoPagamentoPage extends StatelessWidget {
                                 );
                               },
                             );
-                            Modular.to.navigate('/vendas');
+                            Modular.to.navigate('/vendas/');
                           } else {
                             showDialog(
                               context: context,

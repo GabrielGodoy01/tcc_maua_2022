@@ -8,9 +8,15 @@ class VendasDatasourceImpl extends VendasDatasourceInterface {
   VendasDatasourceImpl({required this.dioClient});
 
   List<VendasModel> vendas = [];
+  List<VendasModel> orcamento = [];
 
   @override
   Future postVenda(VendasModel venda) async {
     vendas.add(venda);
+  }
+
+  @override
+  Future postOrcamento(VendasModel venda) async {
+    orcamento.add(venda);
   }
 }

@@ -202,8 +202,38 @@ class VendasPage extends StatelessWidget {
                         width: 32,
                       ),
                       FormButtonWidget(
+                        icon: Icons.monetization_on,
+                        titulo: 'Salvar Orçamento',
+                        onPressed: () {
+                          if (controller.venda.listaItensVenda.isEmpty) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => const CustomAlertDialog(
+                                title: 'Adicione pelo menos um produto',
+                                buttonTitle: 'Entendido',
+                              ),
+                            );
+                          } else {
+                            controller.registrarOrcamento();
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const CustomAlertDialog(
+                                  buttonTitle: 'Ok',
+                                  title: 'O orçamento foi salvo!',
+                                );
+                              },
+                            );
+                            Modular.to.navigate('/vendas/');
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        width: 32,
+                      ),
+                      FormButtonWidget(
                         icon: Icons.check,
-                        titulo: 'Confirmar',
+                        titulo: 'Validar Venda',
                         onPressed: () {
                           if (controller.venda.listaItensVenda.isEmpty) {
                             showDialog(

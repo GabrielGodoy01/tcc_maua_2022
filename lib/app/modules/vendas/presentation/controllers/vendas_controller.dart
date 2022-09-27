@@ -102,6 +102,11 @@ abstract class VendasControllerBase with Store {
   }
 
   @action
+  Future registrarOrcamento() async {
+    await repository.registrarOrcamento(venda);
+  }
+
+  @action
   Future realizarVenda() async {
     await repository.registrarVenda(venda);
   }
