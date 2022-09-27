@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tcc_maua_2022/app/modules/relatorios/presentation/ui/pages/estoque/relatorio_estoque_page.dart';
 import 'package:tcc_maua_2022/app/modules/relatorios/presentation/ui/pages/vendas/relatorio_vendas_page.dart';
 
+import 'orcamento/relatorio_orcamento_page.dart';
+
 class RelatoriosPage extends StatelessWidget {
   const RelatoriosPage({super.key});
 
@@ -62,7 +64,7 @@ class RelatoriosPage extends StatelessWidget {
                     children: [
                       RelatorioEstoquePage(),
                       RelatorioVendasPage(),
-                      Center(child: CircularProgressIndicator()),
+                      RelatorioOrcamentoPage(),
                     ],
                   ),
                 ),

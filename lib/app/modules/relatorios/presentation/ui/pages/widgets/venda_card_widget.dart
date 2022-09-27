@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../vendas/infra/model/estoque_venda_model.dart';
+import '../../../../../vendas/domain/infra/tipo_pagamento_enum.dart';
+import '../../../../../vendas/infra/model/estoque_venda_model.dart';
+import '../../../../../vendas/infra/model/vendas_model.dart';
 
 class VendaCardWidget extends StatelessWidget {
   final String titulo;
   final bool isOpen;
-  final List<EstoqueVendaModel> listaVendas;
+  final VendasModel venda;
   final double custoFinal;
   final Function()? onPressed;
 
@@ -14,7 +16,7 @@ class VendaCardWidget extends StatelessWidget {
       required this.titulo,
       required this.isOpen,
       this.onPressed,
-      required this.listaVendas,
+      required this.venda,
       required this.custoFinal})
       : super(key: key);
 
@@ -89,7 +91,7 @@ class VendaCardWidget extends StatelessWidget {
                         const Divider(
                           color: Colors.black,
                         ),
-                        listaVendas.isEmpty
+                        venda.listaItensVenda.isEmpty
                             ? const Center(
                                 child: CircularProgressIndicator(
                                   color: Colors.blue,
@@ -97,7 +99,7 @@ class VendaCardWidget extends StatelessWidget {
                                 ),
                               )
                             : ListView.builder(
-                                itemCount: listaVendas.length,
+                                itemCount: venda.listaItensVenda.length,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return Column(
@@ -111,9 +113,8 @@ class VendaCardWidget extends StatelessWidget {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                listaVendas[index]
-                                                    .estoque
-                                                    .descricao,
+                                                venda.listaItensVenda[index]
+                                                    .estoque.descricao,
                                                 textAlign: TextAlign.center,
                                                 style: const TextStyle(
                                                   fontSize: 16,
@@ -122,7 +123,7 @@ class VendaCardWidget extends StatelessWidget {
                                             ),
                                             Expanded(
                                               child: Text(
-                                                listaVendas[index]
+                                                venda.listaItensVenda[index]
                                                     .quantidade
                                                     .toString(),
                                                 textAlign: TextAlign.center,
@@ -133,7 +134,7 @@ class VendaCardWidget extends StatelessWidget {
                                             ),
                                             Expanded(
                                               child: Text(
-                                                'R\$ ${listaVendas[index].custoFinal!.toStringAsFixed(2).replaceAll('.', ',')}',
+                                                'R\$ ${venda.listaItensVenda[index].custoFinal!.toStringAsFixed(2).replaceAll('.', ',')}',
                                                 textAlign: TextAlign.center,
                                                 style: const TextStyle(
                                                     fontSize: 16),
@@ -156,8 +157,25 @@ class VendaCardWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Expanded(child: SizedBox.shrink()),
-                            const Expanded(child: SizedBox.shrink()),
+                            const Expanded(
+                              child: Text(
+                                'Final:',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Expanded(
+                              child: venda.tipoPagamento != null
+                                  ? Text(
+                                      venda.tipoPagamento!.nome,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  : const SizedBox.shrink(),
+                            ),
                             Expanded(
                               child: Text(
                                 'R\$ ${custoFinal.toStringAsFixed(2).replaceAll('.', ',')}',

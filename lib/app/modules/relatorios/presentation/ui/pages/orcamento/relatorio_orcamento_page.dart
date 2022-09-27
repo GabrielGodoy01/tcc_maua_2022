@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tcc_maua_2022/app/modules/relatorios/presentation/ui/pages/widgets/venda_card_widget.dart';
 
-import '../../../controllers/vendas/relatorios_vendas_controller.dart';
+import '../../../controllers/orcamento/relatorios_orcamento_controller.dart';
+import '../widgets/venda_card_widget.dart';
 
-class RelatorioVendasPage extends StatelessWidget {
-  const RelatorioVendasPage({super.key});
+class RelatorioOrcamentoPage extends StatelessWidget {
+  const RelatorioOrcamentoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var controller = Modular.get<RelatoriosVendasController>();
+    var controller = Modular.get<RelatoriosOrcamentoController>();
     return SafeArea(
       child: Center(
         child: Padding(
@@ -21,7 +21,7 @@ class RelatorioVendasPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(bottom: 24),
                 child: Text(
-                  'Relatório de Vendas',
+                  'Relatório de Orçamentos',
                   style: TextStyle(fontSize: 36),
                 ),
               ),
@@ -29,16 +29,16 @@ class RelatorioVendasPage extends StatelessWidget {
                 return Flexible(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: controller.listaPanelVendas.length,
+                    itemCount: controller.listaPanelOrcamentos.length,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: VendaCardWidget(
                         custoFinal: controller
-                            .listaPanelVendas[index].vendas.custoFinal,
+                            .listaPanelOrcamentos[index].vendas.custoFinal,
                         titulo: controller
-                            .listaPanelVendas[index].vendas.cliente.nome,
-                        isOpen: controller.listaPanelVendas[index].isOpen,
-                        venda: controller.listaPanelVendas[index].vendas,
+                            .listaPanelOrcamentos[index].vendas.cliente.nome,
+                        isOpen: controller.listaPanelOrcamentos[index].isOpen,
+                        venda: controller.listaPanelOrcamentos[index].vendas,
                         onPressed: () {
                           controller.swapOpen(index);
                         },

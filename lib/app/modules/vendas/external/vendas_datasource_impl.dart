@@ -14,133 +14,136 @@ class VendasDatasourceImpl extends VendasDatasourceInterface {
 
   List<VendasModel> vendas = [
     VendasModel(
-        tipoPagamento: TipoPagamentoEnum.debito,
-        cliente: ClientesModel(
-          idCliente: 0,
-          telefones: ['11991273092', '11991273092', '11991273092'],
-          nome: 'Hector Ronaldinho',
-          razaoSocial: 'razão social',
-          cpf: '',
-          nomeContato: 'nomeContato',
-          rgContato: 'rgContato',
-          email: 'email',
-          enderecoModel: EnderecoModel(
-            bairro: 'SIM',
-            cep: '',
-            cidade: 'SIM',
+      tipoPagamento: TipoPagamentoEnum.debito,
+      cliente: ClientesModel(
+        idCliente: 0,
+        telefones: ['11991273092', '11991273092', '11991273092'],
+        nome: 'Hector Ronaldinho',
+        razaoSocial: 'razão social',
+        cpf: '',
+        nomeContato: 'nomeContato',
+        rgContato: 'rgContato',
+        email: 'email',
+        enderecoModel: EnderecoModel(
+          bairro: 'SIM',
+          cep: '',
+          cidade: 'SIM',
+        ),
+      ),
+      listaItensVenda: [
+        EstoqueVendaModel(
+          quantidade: 10,
+          custoFinal: 100,
+          estoque: EstoqueModel(
+            descricao: 'PRIMEIRA VENDA',
+            custo: 10,
+            estoqueMaximo: 10,
+            estoqueMinimo: 10,
+            quantidade: 10,
+            idEstoque: 0,
+            localizacao: '',
           ),
         ),
-        listaItensVenda: [
-          EstoqueVendaModel(
+        EstoqueVendaModel(
+          quantidade: 10,
+          custoFinal: 100,
+          estoque: EstoqueModel(
+            descricao:
+                'PRIMEIRA VENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDA',
+            custo: 10,
+            estoqueMaximo: 10,
+            estoqueMinimo: 10,
             quantidade: 10,
-            custoFinal: 100,
-            estoque: EstoqueModel(
-              descricao: 'PRIMEIRA VENDA',
-              custo: 10,
-              estoqueMaximo: 10,
-              estoqueMinimo: 10,
-              quantidade: 10,
-              idEstoque: 0,
-              localizacao: '',
-            ),
+            idEstoque: 0,
+            localizacao: '',
           ),
-          EstoqueVendaModel(
-            quantidade: 10,
-            custoFinal: 100,
-            estoque: EstoqueModel(
-              descricao:
-                  'PRIMEIRA VENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDA',
-              custo: 10,
-              estoqueMaximo: 10,
-              estoqueMinimo: 10,
-              quantidade: 10,
-              idEstoque: 0,
-              localizacao: '',
-            ),
-          ),
-        ],
-        custoFinal: 100.0),
+        ),
+      ],
+      custoFinal: 100.0,
+    ),
     VendasModel(
-        custoFinal: 100.0,
-        tipoPagamento: TipoPagamentoEnum.debito,
-        cliente: ClientesModel(
-          idCliente: 0,
-          telefones: ['11991273092', '11991273092', '11991273092'],
-          nome: 'Hector Ronaldinho',
-          razaoSocial: 'razão social',
-          cpf: '',
-          nomeContato: 'nomeContato',
-          rgContato: 'rgContato',
-          email: 'email',
-          enderecoModel: EnderecoModel(
-            bairro: 'SIM',
-            cep: '',
-            cidade: 'SIM',
-          ),
+      custoFinal: 100.0,
+      tipoPagamento: TipoPagamentoEnum.debito,
+      cliente: ClientesModel(
+        idCliente: 0,
+        telefones: ['11991273092', '11991273092', '11991273092'],
+        nome: 'Hector Ronaldinho',
+        razaoSocial: 'razão social',
+        cpf: '',
+        nomeContato: 'nomeContato',
+        rgContato: 'rgContato',
+        email: 'email',
+        enderecoModel: EnderecoModel(
+          bairro: 'SIM',
+          cep: '',
+          cidade: 'SIM',
         ),
-        listaItensVenda: [
-          EstoqueVendaModel(
+      ),
+      listaItensVenda: [
+        EstoqueVendaModel(
+          quantidade: 10,
+          custoFinal: 100,
+          estoque: EstoqueModel(
+            descricao: 'PRIMEIRA VENDA',
+            custo: 10,
+            estoqueMaximo: 10,
+            estoqueMinimo: 10,
             quantidade: 10,
-            custoFinal: 100,
-            estoque: EstoqueModel(
-              descricao: 'PRIMEIRA VENDA',
-              custo: 10,
-              estoqueMaximo: 10,
-              estoqueMinimo: 10,
-              quantidade: 10,
-              idEstoque: 0,
-              localizacao: '',
-            ),
-          )
-        ]),
+            idEstoque: 0,
+            localizacao: '',
+          ),
+        )
+      ],
+    ),
     VendasModel(
-        custoFinal: 100.0,
-        tipoPagamento: TipoPagamentoEnum.debito,
-        cliente: ClientesModel(
-          idCliente: 0,
-          telefones: ['11991273092', '11991273092', '11991273092'],
-          nome: 'Hector Ronaldinho',
-          razaoSocial: 'razão social',
-          cpf: '',
-          nomeContato: 'nomeContato',
-          rgContato: 'rgContato',
-          email: 'email',
-          enderecoModel: EnderecoModel(
-            bairro: 'SIM',
-            cep: '',
-            cidade: 'SIM',
+      custoFinal: 100.0,
+      tipoPagamento: TipoPagamentoEnum.debito,
+      cliente: ClientesModel(
+        idCliente: 0,
+        telefones: ['11991273092', '11991273092', '11991273092'],
+        nome: 'Hector Ronaldinho',
+        razaoSocial: 'razão social',
+        cpf: '',
+        nomeContato: 'nomeContato',
+        rgContato: 'rgContato',
+        email: 'email',
+        enderecoModel: EnderecoModel(
+          bairro: 'SIM',
+          cep: '',
+          cidade: 'SIM',
+        ),
+      ),
+      listaItensVenda: [
+        EstoqueVendaModel(
+          quantidade: 10,
+          custoFinal: 100,
+          estoque: EstoqueModel(
+            descricao:
+                'PRIMEIRA VENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDA',
+            custo: 10,
+            estoqueMaximo: 10,
+            estoqueMinimo: 10,
+            quantidade: 10,
+            idEstoque: 0,
+            localizacao: '',
           ),
         ),
-        listaItensVenda: [
-          EstoqueVendaModel(
+        EstoqueVendaModel(
+          quantidade: 10,
+          custoFinal: 100,
+          estoque: EstoqueModel(
+            descricao:
+                'PRIMEIRA VENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDA',
+            custo: 10,
+            estoqueMaximo: 10,
+            estoqueMinimo: 10,
             quantidade: 10,
-            custoFinal: 100,
-            estoque: EstoqueModel(
-              descricao:
-                  'PRIMEIRA VENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDA',
-              custo: 10,
-              estoqueMaximo: 10,
-              estoqueMinimo: 10,
-              quantidade: 10,
-              idEstoque: 0,
-              localizacao: '',
-            ),
+            idEstoque: 0,
+            localizacao: '',
           ),
-          EstoqueVendaModel(
-            quantidade: 10,
-            custoFinal: 100,
-            estoque: EstoqueModel(
-              descricao:
-                  'PRIMEIRA VENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDA',
-              custo: 10,
-              estoqueMaximo: 10,
-              estoqueMinimo: 10,
-              quantidade: 10,
-              idEstoque: 0,
-              localizacao: '',
-            ),
-          ),
-        ]),
+        ),
+      ],
+    ),
   ];
 
   @override
