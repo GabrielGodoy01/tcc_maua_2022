@@ -107,6 +107,15 @@ mixin _$VendasController on VendasControllerBase, Store {
     return _$initAsyncAction.run(() => super.init());
   }
 
+  late final _$registrarOrcamentoAsyncAction =
+      AsyncAction('VendasControllerBase.registrarOrcamento', context: context);
+
+  @override
+  Future<dynamic> registrarOrcamento() {
+    return _$registrarOrcamentoAsyncAction
+        .run(() => super.registrarOrcamento());
+  }
+
   late final _$realizarVendaAsyncAction =
       AsyncAction('VendasControllerBase.realizarVenda', context: context);
 
@@ -117,6 +126,28 @@ mixin _$VendasController on VendasControllerBase, Store {
 
   late final _$VendasControllerBaseActionController =
       ActionController(name: 'VendasControllerBase', context: context);
+
+  @override
+  void setCustoFinal(double custo) {
+    final _$actionInfo = _$VendasControllerBaseActionController.startAction(
+        name: 'VendasControllerBase.setCustoFinal');
+    try {
+      return super.setCustoFinal(custo);
+    } finally {
+      _$VendasControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setPagamento(TipoPagamentoEnum pagamento) {
+    final _$actionInfo = _$VendasControllerBaseActionController.startAction(
+        name: 'VendasControllerBase.setPagamento');
+    try {
+      return super.setPagamento(pagamento);
+    } finally {
+      _$VendasControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void setCliente(ClientesModel clientesModel) {
@@ -152,11 +183,11 @@ mixin _$VendasController on VendasControllerBase, Store {
   }
 
   @override
-  void setCustoFinal(int index) {
+  void setCustoFinalComposicao(int index) {
     final _$actionInfo = _$VendasControllerBaseActionController.startAction(
-        name: 'VendasControllerBase.setCustoFinal');
+        name: 'VendasControllerBase.setCustoFinalComposicao');
     try {
-      return super.setCustoFinal(index);
+      return super.setCustoFinalComposicao(index);
     } finally {
       _$VendasControllerBaseActionController.endAction(_$actionInfo);
     }

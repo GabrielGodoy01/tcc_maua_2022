@@ -6,10 +6,12 @@ import '../../domain/infra/tipo_pagamento_enum.dart';
 class VendasModel {
   final ClientesModel cliente;
   final List<EstoqueVendaModel> listaItensVenda;
+  final double custoFinal;
   final TipoPagamentoEnum? tipoPagamento;
 
   VendasModel(
-      {this.tipoPagamento,
+      {required this.custoFinal,
+      this.tipoPagamento,
       required this.cliente,
       required this.listaItensVenda});
 
@@ -18,6 +20,7 @@ class VendasModel {
       cliente: ClientesModel.newInstance(),
       listaItensVenda: [],
       tipoPagamento: null,
+      custoFinal: 0.0,
     );
   }
 
@@ -25,11 +28,13 @@ class VendasModel {
     ClientesModel? cliente,
     List<EstoqueVendaModel>? listaItensVenda,
     TipoPagamentoEnum? tipoPagamento,
+    double? custoFinal,
   }) {
     return VendasModel(
       cliente: cliente ?? this.cliente,
       listaItensVenda: listaItensVenda ?? this.listaItensVenda,
       tipoPagamento: tipoPagamento ?? this.tipoPagamento,
+      custoFinal: custoFinal ?? this.custoFinal,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tcc_maua_2022/app/modules/relatorios/presentation/ui/pages/relatorio_estoque_page.dart';
+import 'package:tcc_maua_2022/app/modules/relatorios/presentation/ui/pages/estoque/relatorio_estoque_page.dart';
+import 'package:tcc_maua_2022/app/modules/relatorios/presentation/ui/pages/vendas/relatorio_vendas_page.dart';
 
 class RelatoriosPage extends StatelessWidget {
   const RelatoriosPage({super.key});
@@ -45,8 +46,14 @@ class RelatoriosPage extends StatelessWidget {
                         icon: Icon(Icons.grid_on),
                         text: 'Relatório de Estoque',
                       ),
-                      Tab(icon: Icon(Icons.change_circle)),
-                      Tab(icon: Icon(Icons.change_circle)),
+                      Tab(
+                        icon: Icon(Icons.attach_money),
+                        text: 'Relatório de Vendas',
+                      ),
+                      Tab(
+                        icon: Icon(Icons.monetization_on),
+                        text: 'Relatório de Orçamentos',
+                      ),
                     ],
                   ),
                 ),
@@ -54,7 +61,7 @@ class RelatoriosPage extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       RelatorioEstoquePage(),
-                      Center(child: CircularProgressIndicator()),
+                      RelatorioVendasPage(),
                       Center(child: CircularProgressIndicator()),
                     ],
                   ),

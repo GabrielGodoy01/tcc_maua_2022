@@ -6,6 +6,7 @@ import 'package:tcc_maua_2022/app/modules/vendas/domain/repositories/vendas_repo
 
 import '../../../clientes/infra/model/clientes_model.dart';
 import '../../domain/infra/tipo_pagamento_enum.dart';
+import '../../domain/repositories/orcamento_repository_interface.dart';
 import '../../infra/model/estoque_venda_model.dart';
 import '../../infra/model/vendas_model.dart';
 
@@ -14,12 +15,14 @@ part 'vendas_controller.g.dart';
 class VendasController = VendasControllerBase with _$VendasController;
 
 abstract class VendasControllerBase with Store {
-  final VendasRepositoryInterface repository;
+  final VendasRepositoryInterface vendasRepository;
+  final OrcamentoRepositoryInterface orcamentoRepository;
   final EstoqueRepositoryInterface estoqueRepository;
   final ClientesRepositoryInterface clientesRepository;
 
   VendasControllerBase({
-    required this.repository,
+    required this.vendasRepository,
+    required this.orcamentoRepository,
     required this.estoqueRepository,
     required this.clientesRepository,
   }) {
@@ -48,6 +51,11 @@ abstract class VendasControllerBase with Store {
   }
 
   @action
+  void setCustoFinal(double custo) {
+    venda = venda.copyWith(custoFinal: custo);
+  }
+
+  @action
   void setPagamento(TipoPagamentoEnum pagamento) {
     venda = venda.copyWith(tipoPagamento: pagamento);
   }
@@ -68,7 +76,7 @@ abstract class VendasControllerBase with Store {
   }
 
   @action
-  void setCustoFinal(int index) {
+  void setCustoFinalComposicao(int index) {
     var custoFinal = composicao.quantidade * composicao.estoque.custo;
     listaCustos.replaceRange(index, index, [custoFinal]);
     composicao = composicao.copyWith(custoFinal: custoFinal);
@@ -80,6 +88,7 @@ abstract class VendasControllerBase with Store {
     for (EstoqueVendaModel n in venda.listaItensVenda) {
       total += n.custoFinal!;
     }
+    setCustoFinal(total);
     return total;
   }
 
@@ -103,11 +112,11 @@ abstract class VendasControllerBase with Store {
 
   @action
   Future registrarOrcamento() async {
-    await repository.registrarOrcamento(venda);
+    await orcamentoRepository.registrarOrcamento(venda);
   }
 
   @action
   Future realizarVenda() async {
-    await repository.registrarVenda(venda);
+    await vendasRepository.registrarVenda(venda);
   }
 }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tcc_maua_2022/app/modules/relatorios/presentation/controllers/relatorios_controller.dart';
+import 'package:tcc_maua_2022/app/modules/relatorios/presentation/controllers/estoque/relatorios_estoque_controller.dart';
 
 class RelatorioEstoquePage extends StatelessWidget {
   const RelatorioEstoquePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var controller = Modular.get<RelatoriosController>();
+    var controller = Modular.get<RelatoriosEstoqueController>();
     return SafeArea(
       child: Center(
         child: Padding(

@@ -11,9 +11,13 @@ import '../estoque/domain/repositories/estoque_repository_interface.dart';
 import '../estoque/external/estoque_datasource_impl.dart';
 import '../estoque/infra/datasources/estoque_datasource_interface.dart';
 import '../estoque/infra/repositories/estoque_repository_impl.dart';
+import 'domain/repositories/orcamento_repository_interface.dart';
 import 'domain/repositories/vendas_repository_interface.dart';
+import 'external/orcamento_datasource_impl.dart';
 import 'external/vendas_datasource_impl.dart';
+import 'infra/datasources/orcamento_datasource_interface.dart';
 import 'infra/datasources/vendas_datasource_interface.dart';
+import 'infra/repositories/orcamento_repository_impl.dart';
 import 'infra/repositories/vendas_repository_impl.dart';
 
 class VendasModule extends Module {
@@ -27,12 +31,22 @@ class VendasModule extends Module {
         (i) => ClientesDatasourceImpl(dioClient: i())),
     Bind.lazySingleton<ClientesRepositoryInterface>(
         (i) => ClientesRepositoryImpl(datasource: i())),
-    Bind.lazySingleton<VendasController>((i) => VendasController(
-        clientesRepository: i(), estoqueRepository: i(), repository: i())),
+    Bind.lazySingleton<VendasController>(
+      (i) => VendasController(
+        clientesRepository: i(),
+        estoqueRepository: i(),
+        vendasRepository: i(),
+        orcamentoRepository: i(),
+      ),
+    ),
     Bind.lazySingleton<VendasDatasourceInterface>(
         (i) => VendasDatasourceImpl(dioClient: i())),
     Bind.lazySingleton<VendasRepositoryInterface>(
         (i) => VendasRepositoryImpl(datasource: i())),
+    Bind.lazySingleton<OrcamentoDatasourceInterface>(
+        (i) => OrcamentoDatasourceImpl(dioClient: i())),
+    Bind.lazySingleton<OrcamentoRepositoryInterface>(
+        (i) => OrcamentoRepositoryImpl(datasource: i())),
   ];
 
   @override

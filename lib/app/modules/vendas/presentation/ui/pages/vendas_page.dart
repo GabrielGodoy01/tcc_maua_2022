@@ -105,7 +105,8 @@ class VendasPage extends StatelessWidget {
                                       onChangedQuantidade: (value) {
                                         controller
                                             .setQuantidade(int.parse(value));
-                                        controller.setCustoFinal(index);
+                                        controller
+                                            .setCustoFinalComposicao(index);
                                       },
                                       custoFinal: controller.listaCustos.isEmpty
                                           ? 'R\$ 0,00'

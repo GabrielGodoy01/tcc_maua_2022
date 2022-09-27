@@ -13,7 +13,7 @@ class VendasRepositoryImpl implements VendasRepositoryInterface {
   }
 
   @override
-  Future<void> registrarOrcamento(VendasModel venda) async {
-    await datasource.postOrcamento(venda);
+  Future<List<VendasModel>> obterTodasVendas() async {
+    return await datasource.getVendas();
   }
 }
