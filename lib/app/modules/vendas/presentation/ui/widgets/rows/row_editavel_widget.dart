@@ -37,7 +37,6 @@ class RowEditavelWidth extends StatelessWidget {
           size: 2,
           onChanged: onChangedQuantidade,
           isRequired: true,
-          isNumber: true,
           value: quantidade,
         ),
         const SizedBox(

@@ -108,7 +108,6 @@ class _EstoquePageState extends State<EstoquePage> {
                               controller.setEstoqueMinimo(valor);
                             },
                             isRequired: true,
-                            isNumber: true,
                             value: controller.estoque.estoqueMinimo.toString(),
                           ),
                           TextFormFieldCustomWidget(
@@ -120,7 +119,6 @@ class _EstoquePageState extends State<EstoquePage> {
                               controller.setEstoqueMaximo(valor);
                             },
                             isRequired: true,
-                            isNumber: true,
                             value: controller.estoque.estoqueMaximo.toString(),
                           ),
                           TextFormFieldCustomWidget(
@@ -131,17 +129,18 @@ class _EstoquePageState extends State<EstoquePage> {
                               var valor = int.parse(value);
                               controller.setQuantidade(valor);
                             },
-                            isNumber: true,
                             value: controller.estoque.quantidade.toString(),
                           ),
                           TextFormFieldCustomWidget(
                             size: 2,
                             tipoCampoTextoEnum: TipoCampoTextoEnum.valor,
                             titulo: 'Custo',
-                            isNumber: true,
                             onChanged: (value) {
-                              var valor = double.parse(value);
-                              controller.setCusto(valor);
+                              var valor = value
+                                  .replaceRange(0, 2, '')
+                                  .replaceAll(',', '.');
+                              var valorDouble = double.parse(valor);
+                              controller.setCusto(valorDouble);
                             },
                             value: controller.estoque.custo.toString(),
                           ),

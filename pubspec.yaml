@@ -16,13 +16,13 @@ dependencies:
   dio: ^4.0.6
   intl: ^0.17.0
   build_runner: ^2.2.0
-  extended_masked_text: ^2.3.1
   mobx_codegen: ^2.0.7
   flutter_modular: ^5.0.3
   flutter_mobx: ^2.0.6+1
   mask_text_input_formatter: ^2.4.0
   mockito: ^5.3.1
   modular_test: ^2.0.0
+  currency_text_input_formatter: ^2.1.7
 
 dev_dependencies:
   flutter_test:

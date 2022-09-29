@@ -105,7 +105,6 @@ class _ClientesPageState extends State<ClientesPage> {
                             titulo: 'CNPJ/CPF *',
                             onChanged: controller.setCpf,
                             value: controller.cliente.cpf,
-                            isNumber: true,
                             isRequired: true,
                           ),
                           TextFormFieldCustomWidget(
@@ -167,7 +166,6 @@ class _ClientesPageState extends State<ClientesPage> {
                             onChanged: controller.setCep,
                             value: controller.cliente.enderecoModel.cep,
                             tipoCampoTextoEnum: TipoCampoTextoEnum.cep,
-                            isNumber: true,
                             isRequired: true,
                           ),
                           FormButtonWidget(
@@ -202,7 +200,6 @@ class _ClientesPageState extends State<ClientesPage> {
                             titulo: 'Número *',
                             value: controller.cliente.enderecoModel.numero,
                             isRequired: true,
-                            isNumber: true,
                             tipoCampoTextoEnum: TipoCampoTextoEnum.numero,
                           ),
                           TextFormFieldCustomWidget(

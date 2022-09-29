@@ -101,9 +101,11 @@ class VendasPage extends StatelessWidget {
                                           child: Text(value.descricao),
                                         );
                                       }).toList(),
-                                      quantidade: controller
-                                          .composicao.quantidade
-                                          .toString(),
+                                      quantidade:
+                                          controller.composicao.quantidade == 0
+                                              ? ''
+                                              : controller.composicao.quantidade
+                                                  .toString(),
                                       onChangedQuantidade: (value) {
                                         controller
                                             .setQuantidade(int.parse(value));
