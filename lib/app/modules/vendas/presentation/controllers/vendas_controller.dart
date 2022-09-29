@@ -41,9 +41,6 @@ abstract class VendasControllerBase with Store {
   @observable
   var listaEstoqueCadastrados = <EstoqueModel>[];
 
-  @observable
-  var listaCustos = ObservableList<double?>();
-
   @action
   Future init() async {
     listaClientesCadastrados = await clientesRepository.obterTodosClientes();
@@ -78,7 +75,6 @@ abstract class VendasControllerBase with Store {
   @action
   void setCustoFinalComposicao(int index) {
     var custoFinal = composicao.quantidade * composicao.estoque.custo;
-    listaCustos.replaceRange(index, index, [custoFinal]);
     composicao = composicao.copyWith(custoFinal: custoFinal);
   }
 
@@ -88,7 +84,6 @@ abstract class VendasControllerBase with Store {
     for (EstoqueVendaModel n in venda.listaItensVenda) {
       total += n.custoFinal!;
     }
-    setCustoFinal(total);
     return total;
   }
 
@@ -97,9 +92,9 @@ abstract class VendasControllerBase with Store {
     if (composicao.estoque.descricao != '' && composicao.quantidade != 0) {
       var lista = List<EstoqueVendaModel>.from(venda.listaItensVenda);
       lista.add(composicao);
-      listaCustos.add(0);
       venda = venda.copyWith(listaItensVenda: lista);
       composicao = EstoqueVendaModel.newInstance();
+      setCustoFinal(getTotal);
     }
   }
 
@@ -113,10 +108,12 @@ abstract class VendasControllerBase with Store {
   @action
   Future registrarOrcamento() async {
     await orcamentoRepository.registrarOrcamento(venda);
+    venda = VendasModel.newInstance();
   }
 
   @action
   Future realizarVenda() async {
     await vendasRepository.registrarVenda(venda);
+    venda = VendasModel.newInstance();
   }
 }

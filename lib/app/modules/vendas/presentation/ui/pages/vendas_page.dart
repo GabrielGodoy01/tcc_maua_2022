@@ -89,6 +89,8 @@ class VendasPage extends StatelessWidget {
                               return controller.venda.listaItensVenda.length ==
                                       index
                                   ? RowEditavelWidth(
+                                      isEnable: controller.composicao.estoque
+                                          .descricao.isNotEmpty,
                                       onChangedDescricao: (value) {
                                         controller.setItemEstoque(value!);
                                       },
@@ -108,9 +110,8 @@ class VendasPage extends StatelessWidget {
                                         controller
                                             .setCustoFinalComposicao(index);
                                       },
-                                      custoFinal: controller.listaCustos.isEmpty
-                                          ? 'R\$ 0,00'
-                                          : 'R\$ ${controller.listaCustos[index]!.toStringAsFixed(2).replaceAll('.', ',')}',
+                                      custoFinal:
+                                          'R\$ ${controller.composicao.custoFinal!.toStringAsFixed(2).replaceAll('.', ',')}',
                                       button: SizedBox(
                                         height: 50,
                                         child: ElevatedButton(

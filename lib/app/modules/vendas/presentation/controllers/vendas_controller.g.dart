@@ -83,22 +83,6 @@ mixin _$VendasController on VendasControllerBase, Store {
     });
   }
 
-  late final _$listaCustosAtom =
-      Atom(name: 'VendasControllerBase.listaCustos', context: context);
-
-  @override
-  ObservableList<double?> get listaCustos {
-    _$listaCustosAtom.reportRead();
-    return super.listaCustos;
-  }
-
-  @override
-  set listaCustos(ObservableList<double?> value) {
-    _$listaCustosAtom.reportWrite(value, super.listaCustos, () {
-      super.listaCustos = value;
-    });
-  }
-
   late final _$initAsyncAction =
       AsyncAction('VendasControllerBase.init', context: context);
 
@@ -222,7 +206,6 @@ venda: ${venda},
 composicao: ${composicao},
 listaClientesCadastrados: ${listaClientesCadastrados},
 listaEstoqueCadastrados: ${listaEstoqueCadastrados},
-listaCustos: ${listaCustos},
 getTotal: ${getTotal}
     ''';
   }

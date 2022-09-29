@@ -11,6 +11,7 @@ class RowEditavelWidth extends StatelessWidget {
   final String? quantidade;
   final String custoFinal;
   final Widget button;
+  final bool isEnable;
   const RowEditavelWidth(
       {super.key,
       this.onChangedDescricao,
@@ -18,7 +19,8 @@ class RowEditavelWidth extends StatelessWidget {
       this.onChangedQuantidade,
       this.quantidade,
       required this.custoFinal,
-      required this.button});
+      required this.button,
+      this.isEnable = true});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class RowEditavelWidth extends StatelessWidget {
           width: 64,
         ),
         TextFormFieldCustomWidget(
+          isEnabled: isEnable,
           size: 2,
           onChanged: onChangedQuantidade,
           isRequired: true,
