@@ -43,20 +43,6 @@ class OrcamentoDatasourceImpl extends OrcamentoDatasourceInterface {
             localizacao: '',
           ),
         ),
-        EstoqueVendaModel(
-          quantidade: 10,
-          custoFinal: 100,
-          estoque: EstoqueModel(
-            descricao:
-                'PRIMEIRA VENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDAVENDA',
-            custo: 10,
-            estoqueMaximo: 10,
-            estoqueMinimo: 10,
-            quantidade: 10,
-            idEstoque: 0,
-            localizacao: '',
-          ),
-        ),
       ],
       custoFinal: 100.0,
     ),

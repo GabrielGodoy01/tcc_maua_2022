@@ -5,6 +5,7 @@ import '../../domain/infra/tipo_campo_enum.dart';
 
 class TextFormFieldCustomWidget extends StatefulWidget {
   final String? titulo;
+  final bool needController;
   final void Function(String value)? onChanged;
   final bool isRequired;
   final String? value;
@@ -20,6 +21,7 @@ class TextFormFieldCustomWidget extends StatefulWidget {
     this.tipoCampoTextoEnum = TipoCampoTextoEnum.texto,
     required this.size,
     this.isEnabled = true,
+    this.needController = true,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,9 @@ class TextFormFieldCustomWidget extends StatefulWidget {
 class _TextFormFieldCustomWidgetState extends State<TextFormFieldCustomWidget> {
   @override
   Widget build(BuildContext context) {
+    var controller = widget.needController
+        ? TextEditingController(text: widget.value)
+        : null;
     final maskTelefone = MaskTextInputFormatter(
         initialText: widget.value,
         mask: "(##) #####-####",
@@ -51,6 +56,7 @@ class _TextFormFieldCustomWidgetState extends State<TextFormFieldCustomWidget> {
               ? MediaQuery.of(context).size.width * 0.2
               : MediaQuery.of(context).size.width * 0.1,
       child: TextFormField(
+        controller: controller,
         inputFormatters:
             widget.tipoCampoTextoEnum == TipoCampoTextoEnum.telefone
                 ? [maskTelefone]

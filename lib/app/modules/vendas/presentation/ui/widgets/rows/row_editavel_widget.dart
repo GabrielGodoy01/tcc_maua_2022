@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
 import '../../../../../../shared/widgets/fields/text_form_field_custom_widget.dart';
 import '../../../../../estoque/infra/model/estoque_model.dart';
@@ -38,6 +37,7 @@ class RowEditavelWidth extends StatelessWidget {
           onChanged: onChangedQuantidade,
           isRequired: true,
           value: quantidade,
+          needController: false,
         ),
         const SizedBox(
           width: 64,

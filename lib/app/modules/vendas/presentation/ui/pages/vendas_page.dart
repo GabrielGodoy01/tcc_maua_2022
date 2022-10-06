@@ -247,7 +247,17 @@ class VendasPage extends StatelessWidget {
                                   buttonTitle: 'Entendido'),
                             );
                           } else {
-                            Modular.to.navigate('/vendas/pagamento');
+                            controller.realizarVenda();
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const CustomAlertDialog(
+                                  buttonTitle: 'Ok',
+                                  title: 'A venda foi realizada!',
+                                );
+                              },
+                            );
+                            Modular.to.navigate('/vendas/');
                           }
                         },
                       ),

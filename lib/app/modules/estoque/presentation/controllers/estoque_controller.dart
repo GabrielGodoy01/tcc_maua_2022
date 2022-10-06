@@ -70,6 +70,7 @@ abstract class EstoqueControllerBase with Store {
       await repository.alterarItem(estoque);
     } else {
       await repository.criarNovoItem(estoque);
+      limparTexto();
     }
   }
 

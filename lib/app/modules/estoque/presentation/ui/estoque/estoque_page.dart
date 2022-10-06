@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/infra/model/estoque_model.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/presentation/controllers/estoque_controller.dart';
@@ -61,118 +60,128 @@ class _EstoquePageState extends State<EstoquePage> {
             child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-                child: Observer(builder: (_) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 24),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Cadastro de Estoque',
-                              style: TextStyle(fontSize: 36),
-                            ),
-                            Text(
-                              '* Campos obrigatórios',
-                              style: TextStyle(fontSize: 20),
-                            )
-                          ],
-                        ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Cadastro de Estoque',
+                            style: TextStyle(fontSize: 36),
+                          ),
+                          Text(
+                            '* Campos obrigatórios',
+                            style: TextStyle(fontSize: 20),
+                          )
+                        ],
                       ),
-                      Wrap(
-                        spacing: 32,
-                        runSpacing: 32,
-                        alignment: WrapAlignment.spaceBetween,
+                    ),
+                    Wrap(
+                      spacing: 32,
+                      runSpacing: 32,
+                      alignment: WrapAlignment.spaceBetween,
+                      children: [
+                        TextFormFieldCustomWidget(
+                          size: 0,
+                          titulo: 'Descrição *',
+                          onChanged: controller.setDescricao,
+                          isRequired: true,
+                          value: controller.estoque.descricao,
+                        ),
+                        TextFormFieldCustomWidget(
+                          size: 1,
+                          titulo: 'Localização',
+                          onChanged: controller.setLocalizacao,
+                          value: controller.estoque.localizacao,
+                        ),
+                        TextFormFieldCustomWidget(
+                          size: 1,
+                          tipoCampoTextoEnum: TipoCampoTextoEnum.numero,
+                          titulo: 'Estoque Mínimo *',
+                          onChanged: (value) {
+                            var valor = int.parse(value);
+                            controller.setEstoqueMinimo(valor);
+                          },
+                          isRequired: true,
+                          value: controller.estoque.estoqueMinimo == 0
+                              ? ''
+                              : controller.estoque.estoqueMinimo.toString(),
+                        ),
+                        TextFormFieldCustomWidget(
+                          size: 1,
+                          tipoCampoTextoEnum: TipoCampoTextoEnum.numero,
+                          titulo: 'Estoque Máximo *',
+                          onChanged: (value) {
+                            var valor = int.parse(value);
+                            controller.setEstoqueMaximo(valor);
+                          },
+                          isRequired: true,
+                          value: controller.estoque.estoqueMaximo == 0
+                              ? ''
+                              : controller.estoque.estoqueMaximo.toString(),
+                        ),
+                        TextFormFieldCustomWidget(
+                          size: 2,
+                          tipoCampoTextoEnum: TipoCampoTextoEnum.numero,
+                          titulo: 'Quantidade',
+                          onChanged: (value) {
+                            var valor = int.parse(value);
+                            controller.setQuantidade(valor);
+                          },
+                          value: controller.estoque.quantidade == 0
+                              ? ''
+                              : controller.estoque.quantidade.toString(),
+                        ),
+                        TextFormFieldCustomWidget(
+                          size: 2,
+                          tipoCampoTextoEnum: TipoCampoTextoEnum.valor,
+                          titulo: 'Custo',
+                          onChanged: (value) {
+                            var valor = value
+                                .replaceRange(0, 2, '')
+                                .replaceAll(',', '.');
+                            var valorDouble = double.parse(valor);
+                            controller.setCusto(valorDouble);
+                          },
+                          value: controller.estoque.custo == 0
+                              ? ''
+                              : controller.estoque.custo.toString(),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Row(
                         children: [
-                          TextFormFieldCustomWidget(
-                            size: 0,
-                            titulo: 'Descrição *',
-                            onChanged: controller.setDescricao,
-                            isRequired: true,
-                            value: controller.estoque.descricao,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 32),
+                            child: FormButtonWidget(
+                              icon: Icons.check,
+                              titulo: 'Salvar',
+                              onPressed: () {
+                                setState(() {
+                                  controller.salvarItem();
+                                });
+                              },
+                            ),
                           ),
-                          TextFormFieldCustomWidget(
-                            size: 1,
-                            titulo: 'Localização',
-                            onChanged: controller.setLocalizacao,
-                            value: controller.estoque.localizacao,
-                          ),
-                          TextFormFieldCustomWidget(
-                            size: 2,
-                            tipoCampoTextoEnum: TipoCampoTextoEnum.numero,
-                            titulo: 'Estoque Mínimo *',
-                            onChanged: (value) {
-                              var valor = int.parse(value);
-                              controller.setEstoqueMinimo(valor);
+                          FormButtonWidget(
+                            icon: Icons.replay_outlined,
+                            titulo: 'Limpar',
+                            onPressed: () {
+                              setState(() {
+                                controller.limparTexto();
+                              });
                             },
-                            isRequired: true,
-                            value: controller.estoque.estoqueMinimo.toString(),
-                          ),
-                          TextFormFieldCustomWidget(
-                            size: 2,
-                            tipoCampoTextoEnum: TipoCampoTextoEnum.numero,
-                            titulo: 'Estoque Máximo *',
-                            onChanged: (value) {
-                              var valor = int.parse(value);
-                              controller.setEstoqueMaximo(valor);
-                            },
-                            isRequired: true,
-                            value: controller.estoque.estoqueMaximo.toString(),
-                          ),
-                          TextFormFieldCustomWidget(
-                            size: 2,
-                            tipoCampoTextoEnum: TipoCampoTextoEnum.numero,
-                            titulo: 'Quantidade',
-                            onChanged: (value) {
-                              var valor = int.parse(value);
-                              controller.setQuantidade(valor);
-                            },
-                            value: controller.estoque.quantidade.toString(),
-                          ),
-                          TextFormFieldCustomWidget(
-                            size: 2,
-                            tipoCampoTextoEnum: TipoCampoTextoEnum.valor,
-                            titulo: 'Custo',
-                            onChanged: (value) {
-                              var valor = value
-                                  .replaceRange(0, 2, '')
-                                  .replaceAll(',', '.');
-                              var valorDouble = double.parse(valor);
-                              controller.setCusto(valorDouble);
-                            },
-                            value: controller.estoque.custo.toString(),
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 32),
-                              child: FormButtonWidget(
-                                icon: Icons.check,
-                                titulo: 'Salvar',
-                                onPressed: () {
-                                  controller.salvarItem();
-                                },
-                              ),
-                            ),
-                            FormButtonWidget(
-                              icon: Icons.replay_outlined,
-                              titulo: 'Limpar',
-                              onPressed: () {
-                                controller.limparTexto();
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
-                })),
+                    ),
+                  ],
+                )),
           ),
         ),
       ),
@@ -212,7 +221,9 @@ class _EstoquePageState extends State<EstoquePage> {
                             children: [
                               DropDownFieldCustomWidget<EstoqueModel>(
                                 onChanged: (value) {
-                                  controller.selectEstoque(value!);
+                                  setState(() {
+                                    controller.selectEstoque(value!);
+                                  });
                                 },
                                 items: controller.listaItensEstoque
                                     .map((EstoqueModel value) {
@@ -235,8 +246,10 @@ class _EstoquePageState extends State<EstoquePage> {
                                     titulo: 'Cancelar',
                                     onPressed: () {
                                       Modular.to.pop();
-                                      controller.estoque =
-                                          EstoqueModel.newInstance();
+                                      setState(() {
+                                        controller.estoque =
+                                            EstoqueModel.newInstance();
+                                      });
                                     },
                                   ),
                                   FormButtonWidget(
