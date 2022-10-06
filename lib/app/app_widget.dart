@@ -8,7 +8,7 @@ class AppWidget extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Modular.setInitialRoute('/home');
+    Modular.setInitialRoute('/home/');
     Intl.defaultLocale = 'pt_BR';
     return MaterialApp.router(
       title: 'TCC Mauá',

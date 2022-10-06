@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tcc_maua_2022/app/modules/clientes/infra/model/clientes_model.dart';
 import 'package:tcc_maua_2022/app/modules/clientes/presentation/controllers/clientes_controller.dart';
 import 'package:tcc_maua_2022/app/shared/domain/infra/tipo_campo_enum.dart';
+import '../../../../shared/widgets/dialogs/custom_alert_dialog.dart';
 import '../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
 import '../../../../shared/widgets/fields/text_form_field_custom_widget.dart';
 import '../../../../shared/widgets/buttons/form_button_widget.dart';
@@ -123,14 +124,14 @@ class _ClientesPageState extends State<ClientesPage> {
                         ),
                         TextFormFieldCustomWidget(
                           size: 1,
-                          titulo: 'Telefone 2 *',
+                          titulo: 'Telefone 2',
                           onChanged: controller.setTelefone2,
                           value: controller.cliente.telefones[1],
                           tipoCampoTextoEnum: TipoCampoTextoEnum.telefone,
                         ),
                         TextFormFieldCustomWidget(
                           size: 1,
-                          titulo: 'Telefone 3 *',
+                          titulo: 'Telefone 3',
                           onChanged: controller.setTelefone3,
                           value: controller.cliente.telefones[2],
                           tipoCampoTextoEnum: TipoCampoTextoEnum.telefone,
@@ -148,6 +149,7 @@ class _ClientesPageState extends State<ClientesPage> {
                           onChanged: controller.setRgContato,
                           value: controller.cliente.rgContato,
                           isRequired: true,
+                          tipoCampoTextoEnum: TipoCampoTextoEnum.rg,
                         ),
                       ],
                     ),
@@ -243,6 +245,15 @@ class _ClientesPageState extends State<ClientesPage> {
                                 setState(() {
                                   controller.salvarCliente();
                                 });
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return const CustomAlertDialog(
+                                      buttonTitle: 'Ok',
+                                      title: 'Cliente adicionado!',
+                                    );
+                                  },
+                                );
                               },
                             ),
                           ),

@@ -48,6 +48,10 @@ class _TextFormFieldCustomWidgetState extends State<TextFormFieldCustomWidget> {
       decimalDigits: 2,
       symbol: 'R\$ ',
     );
+    final maskRg = MaskTextInputFormatter(
+        initialText: widget.value,
+        mask: "##.###.###-##",
+        filter: {"#": RegExp(r'[0-9]')});
 
     return SizedBox(
       width: widget.size == 0
@@ -64,7 +68,9 @@ class _TextFormFieldCustomWidgetState extends State<TextFormFieldCustomWidget> {
                     ? [maskCep]
                     : widget.tipoCampoTextoEnum == TipoCampoTextoEnum.valor
                         ? [maskValor]
-                        : null,
+                        : widget.tipoCampoTextoEnum == TipoCampoTextoEnum.rg
+                            ? [maskRg]
+                            : null,
         onChanged: widget.onChanged,
         enabled: widget.isEnabled,
         style: const TextStyle(

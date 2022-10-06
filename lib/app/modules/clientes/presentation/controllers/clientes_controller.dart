@@ -127,8 +127,10 @@ abstract class ClientesControllerBase with Store {
   Future<void> salvarCliente() async {
     if (cliente.idCliente != null) {
       await repository.alterarItem(cliente);
+      limparTexto();
     } else {
       await repository.criarNovoItem(cliente);
+      limparTexto();
     }
   }
 

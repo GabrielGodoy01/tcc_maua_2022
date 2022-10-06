@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/infra/model/estoque_model.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/presentation/controllers/estoque_controller.dart';
 import '../../../../../shared/domain/infra/tipo_campo_enum.dart';
+import '../../../../../shared/widgets/dialogs/custom_alert_dialog.dart';
 import '../../../../../shared/widgets/fields/drop_down_field_custom_widget.dart';
 import '../../../../../shared/widgets/fields/text_form_field_custom_widget.dart';
 import '../../../../../shared/widgets/buttons/form_button_widget.dart';
@@ -165,6 +166,15 @@ class _EstoquePageState extends State<EstoquePage> {
                                 setState(() {
                                   controller.salvarItem();
                                 });
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return const CustomAlertDialog(
+                                      buttonTitle: 'Ok',
+                                      title: 'Estoque adicionado!',
+                                    );
+                                  },
+                                );
                               },
                             ),
                           ),

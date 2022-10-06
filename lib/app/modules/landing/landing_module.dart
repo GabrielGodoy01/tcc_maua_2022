@@ -5,6 +5,10 @@ import 'package:tcc_maua_2022/app/modules/vendas/vendas_module.dart';
 
 import '../../shared/widgets/vertical-appbar/controller/appbar_controller.dart';
 import '../clientes/clientes_module.dart';
+import '../clientes/domain/repositories/clientes_repository_interface.dart';
+import '../clientes/external/clientes_datasource_impl.dart';
+import '../clientes/infra/datasources/clientes_datasource_interface.dart';
+import '../clientes/infra/repositories/clientes_repository_impl.dart';
 import '../estoque/domain/repositories/estoque_repository_interface.dart';
 import '../estoque/estoque_module.dart';
 import '../estoque/external/estoque_datasource_impl.dart';
@@ -36,6 +40,10 @@ class LandingModule extends Module {
         (i) => OrcamentoDatasourceImpl(dioClient: i())),
     Bind.lazySingleton<OrcamentoRepositoryInterface>(
         (i) => OrcamentoRepositoryImpl(datasource: i())),
+    Bind.lazySingleton<ClientesDatasourceInterface>(
+        (i) => ClientesDatasourceImpl(dioClient: i())),
+    Bind.lazySingleton<ClientesRepositoryInterface>(
+        (i) => ClientesRepositoryImpl(datasource: i())),
   ];
 
   @override
