@@ -1,3 +1,4 @@
+[![codecov](https://codecov.io/gh/GabrielGodoy01/tcc_maua_2022/branch/master/graph/badge.svg?token=GR7SIIK1QU)](https://codecov.io/gh/GabrielGodoy01/tcc_maua_2022)
 # tcc_maua_2022
 
 A new Flutter project.
