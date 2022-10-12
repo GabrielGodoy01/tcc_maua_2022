@@ -7,11 +7,13 @@ import 'package:tcc_maua_2022/app/modules/clientes/domain/repositories/clientes_
 import 'package:tcc_maua_2022/app/modules/clientes/external/busca_cep_datasource.dart';
 import 'package:tcc_maua_2022/app/modules/clientes/infra/datasources/clientes_datasource_interface.dart';
 import 'package:tcc_maua_2022/app/modules/clientes/presentation/controllers/clientes_controller.dart';
+import 'package:tcc_maua_2022/app/modules/landing/landing_module.dart';
 
 void main() {
   initModules([
     ClientesModule(),
     AppModule(),
+    LandingModule(),
   ]);
 
   test('ClientesController Injection', () {

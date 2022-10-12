@@ -6,11 +6,13 @@ import 'package:tcc_maua_2022/app/modules/estoque/domain/repositories/estoque_re
 import 'package:tcc_maua_2022/app/modules/estoque/estoque_module.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/infra/datasources/estoque_datasource_interface.dart';
 import 'package:tcc_maua_2022/app/modules/estoque/presentation/controllers/estoque_controller.dart';
+import 'package:tcc_maua_2022/app/modules/landing/landing_module.dart';
 
 void main() {
   initModules([
     EstoqueModule(),
     AppModule(),
+    LandingModule(),
   ]);
 
   test('EstoqueController Injection', () {
